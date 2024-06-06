@@ -1322,157 +1322,557 @@ public final class Utils {
     /**********************************************************************
      * for Number
      **********************************************************************/
-    // 파라메터 값을 파라메터 지정한 위치로 올림한 값을 반환한다.
+    /**
+     * Returns the given numeric string value rounded up to the nearest integer.
+     *
+     * <p>This method checks if the provided string represents a valid numeric value. 
+     * If valid, it parses the string to a double and calls {@code getCeil(double num, int precision)} 
+     * with a precision of 0 to round up the value to the nearest integer. If the string is not a 
+     * valid numeric value, a {@code UtilsException} is thrown.</p>
+     *
+     * @param num The numeric string value to be rounded up.
+     * @return The rounded up value as a double.
+     * @throws UtilsException If the provided string is not a valid numeric value.
+     */
     public static double getCeil(String num) {
         if(num == null || !isNumeric(num)) {
             throw new UtilsException("Please enter a valid number.");
         }
         return getCeil(Double.parseDouble(num), 0);
     }
+    /**
+     * Returns the given numeric string value rounded up to the specified precision.
+     *
+     * <p>This method checks if the provided string represents a valid numeric value. 
+     * If valid, it parses the string to a double and calls {@code getCeil(double num, int precision)} 
+     * with the specified precision to round up the value. If the string is not a 
+     * valid numeric value, a {@code UtilsException} is thrown.</p>
+     *
+     * @param num The numeric string value to be rounded up.
+     * @param precision The number of decimal places to consider for rounding up.
+     * @return The rounded up value as a double.
+     * @throws UtilsException If the provided string is not a valid numeric value.
+     */
     public static double getCeil(String num, int precision) {
         if(num == null || !isNumeric(num)) {
             throw new UtilsException("Please enter a valid number.");
         }
         return getCeil(Double.parseDouble(num), precision);
     }
+    /**
+     * Returns the given integer value rounded up to the nearest integer.
+     *
+     * <p>This method calls {@code getCeil(double num, int precision)} with the provided 
+     * integer value converted to a double and a precision of 0 to round up the value to the nearest integer.</p>
+     *
+     * @param num The integer value to be rounded up.
+     * @return The rounded up value as a double.
+     */
     public static double getCeil(int num) {
         return getCeil((double) num, 0);
     }
+    /**
+     * Returns the given integer value rounded up to the specified precision.
+     *
+     * <p>This method calls {@code getCeil(double num, int precision)} with the provided 
+     * integer value converted to a double and the specified precision to round up the value.</p>
+     *
+     * @param num The integer value to be rounded up.
+     * @param precision The number of decimal places to consider for rounding up.
+     * @return The rounded up value as a double.
+     */
     public static double getCeil(int num, int precision) {
         return getCeil((double) num, precision);
     }
+    /**
+     * Returns the given long value rounded up to the nearest integer.
+     *
+     * <p>This method calls {@code getCeil(double num, int precision)} with the provided 
+     * long value converted to a double and a precision of 0 to round up the value to the nearest integer.</p>
+     *
+     * @param num The long value to be rounded up.
+     * @return The rounded up value as a double.
+     */
     public static double getCeil(long num) {
         return getCeil((double) num, 0);
     }
+    /**
+     * Returns the given long value rounded up to the specified precision.
+     *
+     * <p>This method calls {@code getCeil(double num, int precision)} with the provided 
+     * long value converted to a double and the specified precision to round up the value.</p>
+     *
+     * @param num The long value to be rounded up.
+     * @param precision The number of decimal places to consider for rounding up.
+     * @return The rounded up value as a double.
+     */
     public static double getCeil(long num, int precision) {
         return getCeil((double) num, precision);
     }
+    /**
+     * Returns the given float value rounded up to the nearest integer.
+     *
+     * <p>This method calls {@code getCeil(double num, int precision)} with the provided 
+     * float value converted to a double and a precision of 0 to round up the value to the nearest integer.</p>
+     *
+     * @param num The float value to be rounded up.
+     * @return The rounded up value as a double.
+     */
     public static double getCeil(float num) {
         return getCeil((double) num, 0);
     }
+    /**
+     * Returns the given float value rounded up to the specified precision.
+     *
+     * <p>This method calls {@code getCeil(double num, int precision)} with the provided 
+     * float value converted to a double and the specified precision to round up the value.</p>
+     *
+     * @param num The float value to be rounded up.
+     * @param precision The number of decimal places to consider for rounding up.
+     * @return The rounded up value as a double.
+     */
     public static double getCeil(float num, int precision) {
         return getCeil((double) num, precision);
     }
+    /**
+     * Returns the given double value rounded up to the nearest integer.
+     *
+     * <p>This method calls {@code getCeil(double num, int precision)} with the specified 
+     * double value and a precision of 0 to round up the value to the nearest integer.</p>
+     *
+     * @param num The double value to be rounded up.
+     * @return The rounded up value as a double.
+     */
     public static double getCeil(double num) {
         return getCeil(num, 0);
     }
+    /**
+     * Returns the given double value rounded up to the specified precision.
+     *
+     * <p>This method rounds up the provided double value to the specified number of decimal places. 
+     * It uses the {@code Math.ceil} function to perform the rounding operation.</p>
+     *
+     * @param num The double value to be rounded up.
+     * @param precision The number of decimal places to consider for rounding up.
+     * @return The rounded up value as a double.
+     */
     public static double getCeil(double num, int precision) {
         double factor = Math.pow(10, precision);
         return Math.ceil(num * factor) / factor;
     }
 
-    // 파라메터 값을 파라메터 지정한 위치로 내림한 값을 반환한다.
+    /**
+     * Returns the given numeric string value rounded down to the nearest integer.
+     *
+     * <p>This method checks if the provided string represents a valid numeric value. 
+     * If valid, it parses the string to a double and calls {@code getFloor(double num, int precision)} 
+     * with a precision of 0 to round down the value to the nearest integer. If the string is not a 
+     * valid numeric value, a {@code UtilsException} is thrown.</p>
+     *
+     * @param num The numeric string value to be rounded down.
+     * @return The rounded down value as a double.
+     * @throws UtilsException If the provided string is not a valid numeric value.
+     */
     public static double getFloor(String num) {
         if(num == null || !isNumeric(num)) {
             throw new UtilsException("Please enter a valid number.");
         }
         return getFloor(Double.parseDouble(num), 0);
     }
+    /**
+     * Returns the given numeric string value rounded down to the specified precision.
+     *
+     * <p>This method checks if the provided string represents a valid numeric value. 
+     * If valid, it parses the string to a double and calls {@code getFloor(double num, int precision)} 
+     * with the specified precision to round down the value. If the string is not a 
+     * valid numeric value, a {@code UtilsException} is thrown.</p>
+     *
+     * @param num The numeric string value to be rounded down.
+     * @param precision The number of decimal places to consider for rounding down.
+     * @return The rounded down value as a double.
+     * @throws UtilsException If the provided string is not a valid numeric value.
+     */
     public static double getFloor(String num, int precision) {
         if(num == null || !isNumeric(num)) {
             throw new UtilsException("Please enter a valid number.");
         }
         return getFloor(Double.parseDouble(num), precision);
     }
+    /**
+     * Returns the given integer value rounded down to the nearest integer.
+     *
+     * <p>This method calls {@code getFloor(double num, int precision)} with the provided 
+     * integer value converted to a double and a precision of 0 to round down the value to the nearest integer.</p>
+     *
+     * @param num The integer value to be rounded down.
+     * @return The rounded down value as a double.
+     */
     public static double getFloor(int num) {
         return getFloor((double) num, 0);
     }
+    /**
+     * Returns the given integer value rounded down to the specified precision.
+     *
+     * <p>This method calls {@code getFloor(double num, int precision)} with the provided 
+     * integer value converted to a double and the specified precision to round down the value.</p>
+     *
+     * @param num The integer value to be rounded down.
+     * @param precision The number of decimal places to consider for rounding down.
+     * @return The rounded down value as a double.
+     */
     public static double getFloor(int num, int precision) {
         return getFloor((double) num, precision);
     }
+    /**
+     * Returns the given long value rounded down to the nearest integer.
+     *
+     * <p>This method calls {@code getFloor(double num, int precision)} with the provided 
+     * long value converted to a double and a precision of 0 to round down the value to the nearest integer.</p>
+     *
+     * @param num The long value to be rounded down.
+     * @return The rounded down value as a double.
+     */
     public static double getFloor(long num) {
         return getFloor((double) num, 0);
     }
+    /**
+     * Returns the given long value rounded down to the specified precision.
+     *
+     * <p>This method calls {@code getFloor(double num, int precision)} with the provided 
+     * long value converted to a double and the specified precision to round down the value.</p>
+     *
+     * @param num The long value to be rounded down.
+     * @param precision The number of decimal places to consider for rounding down.
+     * @return The rounded down value as a double.
+     */
     public static double getFloor(long num, int precision) {
         return getFloor((double) num, precision);
     }
+    /**
+     * Returns the given float value rounded down to the nearest integer.
+     *
+     * <p>This method calls {@code getFloor(double num, int precision)} with the provided 
+     * float value converted to a double and a precision of 0 to round down the value to the nearest integer.</p>
+     *
+     * @param num The float value to be rounded down.
+     * @return The rounded down value as a double.
+     */
     public static double getFloor(float num) {
         return getFloor((double) num, 0);
     }
+    /**
+     * Returns the given float value rounded down to the specified precision.
+     *
+     * <p>This method calls {@code getFloor(double num, int precision)} with the provided 
+     * float value converted to a double and the specified precision to round down the value.</p>
+     *
+     * @param num The float value to be rounded down.
+     * @param precision The number of decimal places to consider for rounding down.
+     * @return The rounded down value as a double.
+     */
     public static double getFloor(float num, int precision) {
         return getFloor((double) num, precision);
     }
+    /**
+     * Returns the given double value rounded down to the nearest integer.
+     *
+     * <p>This method calls {@code getFloor(double num, int precision)} with the specified 
+     * double value and a precision of 0 to round down the value to the nearest integer.</p>
+     *
+     * @param num The double value to be rounded down.
+     * @return The rounded down value as a double.
+     */
     public static double getFloor(double num) {
         return getFloor(num, 0);
     }
+    /**
+     * Returns the given double value rounded down to the specified precision.
+     *
+     * <p>This method rounds down the provided double value to the specified number of decimal places 
+     * using the {@code Math.floor} function.</p>
+     *
+     * @param num The double value to be rounded down.
+     * @param precision The number of decimal places to consider for rounding down.
+     * @return The rounded down value as a double.
+     */
     public static double getFloor(double num, int precision) {
         double factor = Math.pow(10, precision);
         return Math.floor(num * factor) / factor;
     }
 
-    // 파라메터 값을 파라메터 지정한 위치로 반올림한 값을 반환한다.
+    /**
+     * Returns the given numeric string value rounded to the nearest integer.
+     *
+     * <p>This method checks if the provided string represents a valid numeric value. 
+     * If valid, it parses the string to a double and calls {@code getRound(double num, int precision)} 
+     * with a precision of 0 to round the value to the nearest integer. If the string is not a 
+     * valid numeric value, a {@code UtilsException} is thrown.</p>
+     *
+     * @param num The numeric string value to be rounded.
+     * @return The rounded value as a double.
+     * @throws UtilsException If the provided string is not a valid numeric value.
+     */
     public static double getRound(String num) {
         if(num == null || !isNumeric(num)) {
             throw new UtilsException("Please enter a valid number.");
         }
         return getRound(Double.parseDouble(num), 0);
     }
+    /**
+     * Returns the given numeric string value rounded to the specified precision.
+     *
+     * <p>This method checks if the provided string represents a valid numeric value. 
+     * If valid, it parses the string to a double and calls {@code getRound(double num, int precision)} 
+     * with the specified precision to round the value. If the string is not a 
+     * valid numeric value, a {@code UtilsException} is thrown.</p>
+     *
+     * @param num The numeric string value to be rounded.
+     * @param precision The number of decimal places to consider for rounding.
+     * @return The rounded value as a double.
+     * @throws UtilsException If the provided string is not a valid numeric value.
+     */
     public static double getRound(String num, int precision) {
         if(num == null || !isNumeric(num)) {
             throw new UtilsException("Please enter a valid number.");
         }
         return getRound(Double.parseDouble(num), precision);
     }
+    /**
+     * Returns the given integer value rounded to the nearest integer.
+     *
+     * <p>This method calls {@code getRound(double num, int precision)} with the provided 
+     * integer value converted to a double and a precision of 0 to round the value to the nearest integer.</p>
+     *
+     * @param num The integer value to be rounded.
+     * @return The rounded value as a double.
+     */
     public static double getRound(int num) {
         return getRound((double) num, 0);
     }
+    /**
+     * Returns the given integer value rounded to the specified precision.
+     *
+     * <p>This method calls {@code getRound(double num, int precision)} with the provided 
+     * integer value converted to a double and the specified precision to round the value.</p>
+     *
+     * @param num The integer value to be rounded.
+     * @param precision The number of decimal places to consider for rounding.
+     * @return The rounded value as a double.
+     */
     public static double getRound(int num, int precision) {
         return getRound((double) num, precision);
     }
+    /**
+     * Returns the given long value rounded to the nearest integer.
+     *
+     * <p>This method calls {@code getRound(double num, int precision)} with the provided 
+     * long value converted to a double and a precision of 0 to round the value to the nearest integer.</p>
+     *
+     * @param num The long value to be rounded.
+     * @return The rounded value as a double.
+     */
     public static double getRound(long num) {
         return getRound((double) num, 0);
     }
+    /**
+     * Returns the given long value rounded to the specified precision.
+     *
+     * <p>This method calls {@code getRound(double num, int precision)} with the provided 
+     * long value converted to a double and the specified precision to round the value.</p>
+     *
+     * @param num The long value to be rounded.
+     * @param precision The number of decimal places to consider for rounding.
+     * @return The rounded value as a double.
+     */
     public static double getRound(long num, int precision) {
         return getRound((double) num, precision);
     }
+    /**
+     * Returns the given float value rounded to the nearest integer.
+     *
+     * <p>This method calls {@code getRound(double num, int precision)} with the provided 
+     * float value converted to a double and a precision of 0 to round the value to the nearest integer.</p>
+     *
+     * @param num The float value to be rounded.
+     * @return The rounded value as a double.
+     */
     public static double getRound(float num) {
         return getRound((double) num, 0);
     }
+    /**
+     * Returns the given float value rounded to the specified precision.
+     *
+     * <p>This method calls {@code getRound(double num, int precision)} with the provided 
+     * float value converted to a double and the specified precision to round the value.</p>
+     *
+     * @param num The float value to be rounded.
+     * @param precision The number of decimal places to consider for rounding.
+     * @return The rounded value as a double.
+     */
     public static double getRound(float num, int precision) {
         return getRound((double) num, precision);
     }
+    /**
+     * Returns the given double value rounded to the nearest integer.
+     *
+     * <p>This method calls {@code getRound(double num, int precision)} with the specified 
+     * double value and a precision of 0 to round the value to the nearest integer.</p>
+     *
+     * @param num The double value to be rounded.
+     * @return The rounded value as a double.
+     */
     public static double getRound(double num) {
         return getRound(num, 0);
     }
+    /**
+     * Returns the given double value rounded to the specified precision.
+     *
+     * <p>This method rounds the provided double value to the specified number of decimal places 
+     * using the {@code Math.round} function.</p>
+     *
+     * @param num The double value to be rounded.
+     * @param precision The number of decimal places to consider for rounding.
+     * @return The rounded value as a double.
+     */
     public static double getRound(double num, int precision) {
         double factor = Math.pow(10, precision);
         return Math.round(num * factor) / factor;
     }
 
-    // 파라메터 값을 파라메터 지정한 위치로 버림한 값을 반환한다.
+    /**
+     * Returns the given numeric string value truncated to the nearest integer.
+     *
+     * <p>This method checks if the provided string represents a valid numeric value. 
+     * If valid, it parses the string to a double and calls {@code getTrunc(double num, int precision)} 
+     * with a precision of 0 to truncate the value to the nearest integer. If the string is not a 
+     * valid numeric value, a {@code UtilsException} is thrown.</p>
+     *
+     * @param num The numeric string value to be truncated.
+     * @return The truncated value as a double.
+     * @throws UtilsException If the provided string is not a valid numeric value.
+     */
     public static double getTrunc(String num) {
         if(num == null || !isNumeric(num)) {
             throw new UtilsException("Please enter a valid number.");
         }
         return getTrunc(Double.parseDouble(num), 0);
     }
+    /**
+     * Returns the given numeric string value truncated to the specified precision.
+     *
+     * <p>This method checks if the provided string represents a valid numeric value. 
+     * If valid, it parses the string to a double and calls {@code getTrunc(double num, int precision)} 
+     * with the specified precision to truncate the value. If the string is not a 
+     * valid numeric value, a {@code UtilsException} is thrown.</p>
+     *
+     * @param num The numeric string value to be truncated.
+     * @param precision The number of decimal places to consider for truncation.
+     * @return The truncated value as a double.
+     * @throws UtilsException If the provided string is not a valid numeric value.
+     */
     public static double getTrunc(String num, int precision) {
         if(num == null || !isNumeric(num)) {
             throw new UtilsException("Please enter a valid number.");
         }
         return getTrunc(Double.parseDouble(num), precision);
     }
+    /**
+     * Returns the given integer value truncated to the nearest integer.
+     *
+     * <p>This method calls {@code getTrunc(double num, int precision)} with the provided 
+     * integer value converted to a double and a precision of 0 to truncate the value to the nearest integer.</p>
+     *
+     * @param num The integer value to be truncated.
+     * @return The truncated value as a double.
+     */
     public static double getTrunc(int num) {
         return getTrunc((double) num, 0);
     }
+    /**
+     * Returns the given integer value truncated to the specified precision.
+     *
+     * <p>This method calls {@code getTrunc(double num, int precision)} with the provided 
+     * integer value converted to a double and the specified precision to truncate the value.</p>
+     *
+     * @param num The integer value to be truncated.
+     * @param precision The number of decimal places to consider for truncation.
+     * @return The truncated value as a double.
+     */
     public static double getTrunc(int num, int precision) {
         return getTrunc((double) num, precision);
     }
+    /**
+     * Returns the given long value truncated to the nearest integer.
+     *
+     * <p>This method calls {@code getTrunc(double num, int precision)} with the provided 
+     * long value converted to a double and a precision of 0 to truncate the value to the nearest integer.</p>
+     *
+     * @param num The long value to be truncated.
+     * @return The truncated value as a double.
+     */
     public static double getTrunc(long num) {
         return getTrunc((double) num, 0);
     }
+    /**
+     * Returns the given long value truncated to the specified precision.
+     *
+     * <p>This method calls {@code getTrunc(double num, int precision)} with the provided 
+     * long value converted to a double and the specified precision to truncate the value.</p>
+     *
+     * @param num The long value to be truncated.
+     * @param precision The number of decimal places to consider for truncation.
+     * @return The truncated value as a double.
+     */
     public static double getTrunc(long num, int precision) {
         return getTrunc((double) num, precision);
     }
+    /**
+     * Returns the given float value truncated to the nearest integer.
+     *
+     * <p>This method calls {@code getTrunc(double num, int precision)} with the provided 
+     * float value converted to a double and a precision of 0 to truncate the value to the nearest integer.</p>
+     *
+     * @param num The float value to be truncated.
+     * @return The truncated value as a double.
+     */
     public static double getTrunc(float num) {
         return getTrunc((double) num, 0);
     }
+    /**
+     * Returns the given float value truncated to the specified precision.
+     *
+     * <p>This method calls {@code getTrunc(double num, int precision)} with the provided 
+     * float value converted to a double and the specified precision to truncate the value.</p>
+     *
+     * @param num The float value to be truncated.
+     * @param precision The number of decimal places to consider for truncation.
+     * @return The truncated value as a double.
+     */
     public static double getTrunc(float num, int precision) {
         return getTrunc((double) num, precision);
     }
+    /**
+     * Returns the given double value truncated to the nearest integer.
+     *
+     * <p>This method calls {@code getTrunc(double num, int precision)} with the specified 
+     * double value and a precision of 0 to truncate the value to the nearest integer.</p>
+     *
+     * @param num The double value to be truncated.
+     * @return The truncated value as a double.
+     */
     public static double getTrunc(double num) {
         return getTrunc(num, 0);
     }
+    /**
+     * Returns the given double value truncated to the specified precision.
+     *
+     * <p>This method truncates the provided double value to the specified number of decimal places 
+     * using the {@code Math.floor} function.</p>
+     *
+     * @param num The double value to be truncated.
+     * @param precision The number of decimal places to consider for truncation.
+     * @return The truncated value as a double.
+     */
     public static double getTrunc(double num, int precision) {
         double factor = Math.pow(10, precision);
         return Math.floor(num * factor) / factor;
@@ -1481,7 +1881,23 @@ public final class Utils {
     /**********************************************************************
      * for String
      **********************************************************************/
-    // 문자열의 Byte길이를 반환한다.
+    /**
+     * Returns the byte length of the given string.
+     *
+     * <p>This method calculates the byte length of the provided string. 
+     * It iterates over each character in the string and adds the appropriate byte length 
+     * based on the character's Unicode code point.</p>
+     *
+     * <ul>
+     *     <li>Characters with code points <= 0x7F are counted as 1 byte.</li>
+     *     <li>Characters with code points <= 0x7FF are counted using the {@code LESSOREQ_0X7FF_BYTE} value.</li>
+     *     <li>Characters with code points <= 0xFFFF are counted using the {@code LESSOREQ_0XFFFF_BYTE} value.</li>
+     *     <li>Characters with code points > 0xFFFF are counted using the {@code GREATER_0XFFFF_BYTE} value.</li>
+     * </ul>
+     *
+     * @param str The string whose byte length is to be calculated.
+     * @return The byte length of the string.
+     */
     public static int getByteLength(String str) {
         if (str == null) return 0;
 
@@ -1502,7 +1918,25 @@ public final class Utils {
         return byteLength;
     }
 
-    // 파라메터 문자열을 파라메터 Byte로 자른 값을 반환한다.
+    /**
+     * Returns the substring of the given string, cut to the specified byte length.
+     *
+     * <p>This method calculates the byte length of the provided string and returns a substring 
+     * that fits within the specified byte length. It iterates over each character in the string 
+     * and adds the appropriate byte length based on the character's Unicode code point until the 
+     * total byte length exceeds the specified cut byte length.</p>
+     *
+     * <ul>
+     *     <li>Characters with code points <= 0x7F are counted as 1 byte.</li>
+     *     <li>Characters with code points <= 0x7FF are counted using the {@code LESSOREQ_0X7FF_BYTE} value.</li>
+     *     <li>Characters with code points <= 0xFFFF are counted using the {@code LESSOREQ_0XFFFF_BYTE} value.</li>
+     *     <li>Characters with code points > 0xFFFF are counted using the {@code GREATER_0XFFFF_BYTE} value.</li>
+     * </ul>
+     *
+     * @param str The string to be cut.
+     * @param cutByte The maximum byte length of the resulting substring.
+     * @return The substring cut to the specified byte length.
+     */
     public static String getCutByteLength(String str, int cutByte) {
         if (str == null) return "";
         int byteLength = 0;
@@ -1529,7 +1963,19 @@ public final class Utils {
         return str.substring(0, cutIndex);
     }
 
-    // 파라메터 문자열에 사이사이 일정한 공백을 추가하여 길이 규격을 맞춘 값을 반환한다.
+    /**
+     * Returns the given string with additional spaces inserted to match the specified length.
+     *
+     * <p>This method adjusts the given string to the specified length by inserting spaces between characters.
+     * If the string is already equal to or longer than the specified length, it is returned unchanged.</p>
+     *
+     * <p>If the string is shorter than the specified length, spaces are evenly distributed between characters.
+     * Any remaining spaces are added to the gaps from left to right.</p>
+     *
+     * @param str The string to be adjusted.
+     * @param length The desired length of the resulting string.
+     * @return The string adjusted to the specified length with spaces inserted, or {@code null} if the input string is {@code null}.
+     */
     public static String getStringLenForm(String str, int length) {
         if (str == null) return null;
         int strLength = str.length();
@@ -1554,7 +2000,22 @@ public final class Utils {
         return result.toString();
     }
 
-    //파라메터 문자열 왼쪽에 파라메터 특정 문자를 반복해 채운 값을 반환한다.
+    /**
+     * Returns the given string left-padded with the specified character to the specified length.
+     *
+     * <p>This method pads the given string on the left with the specified pad string until the total length 
+     * of the resulting string matches the specified length. If the pad string is {@code null} or empty, 
+     * an {@code IllegalArgumentException} is thrown.</p>
+     *
+     * <p>If the length of the given string is already equal to or greater than the specified length, 
+     * the original string is returned unchanged.</p>
+     *
+     * @param str The string to be padded.
+     * @param padStr The string to pad with.
+     * @param length The desired length of the resulting string.
+     * @return The left-padded string.
+     * @throws IllegalArgumentException If the pad string is {@code null} or empty.
+     */
     public static String getLpad(String str, String padStr, int length) {
         if (str == null) str = "";
         if (padStr == null || padStr.isEmpty()) throw new IllegalArgumentException("Pad string cannot be null or empty");
@@ -1572,7 +2033,22 @@ public final class Utils {
         return pad.substring(0, padLength) + str;
     }
 
-    //파라메터 문자열 오른쪽에 파라메터 특정 문자를 반복해 채운 값을 반환한다.
+    /**
+     * Returns the given string right-padded with the specified character to the specified length.
+     *
+     * <p>This method pads the given string on the right with the specified pad string until the total length 
+     * of the resulting string matches the specified length. If the pad string is {@code null} or empty, 
+     * an {@code IllegalArgumentException} is thrown.</p>
+     *
+     * <p>If the length of the given string is already equal to or greater than the specified length, 
+     * the original string is returned unchanged.</p>
+     *
+     * @param str The string to be padded.
+     * @param padStr The string to pad with.
+     * @param length The desired length of the resulting string.
+     * @return The right-padded string.
+     * @throws IllegalArgumentException If the pad string is {@code null} or empty.
+     */
     public static String getRpad(String str, String padStr, int length) {
         if (str == null) str = "";
         if (padStr == null || padStr.isEmpty()) throw new IllegalArgumentException("Pad string cannot be null or empty");
@@ -1590,38 +2066,92 @@ public final class Utils {
         return str + pad.substring(0, padLength);
     }
 
-    //값이 null인 경우 지정된 값을 반환한다.
+    /**
+     * Returns the specified default value if the given value is {@code null}.
+     *
+     * <p>This method checks if the provided value is {@code null}. If it is, the specified default 
+     * value is returned. Otherwise, the original value is returned.</p>
+     *
+     * @param <T> The type of the value.
+     * @param value The value to check for {@code null}.
+     * @param defaultValue The default value to return if the provided value is {@code null}.
+     * @return The original value if it is not {@code null}, otherwise the default value.
+     */
     public static <T> T nvl(T value, T defaultValue) {
         return value == null ? defaultValue : value;
     }
 
+    /**
+     * Returns the given integer value formatted as a string using the default number format.
+     *
+     * <p>This method converts the provided integer value to a string and calls {@code getNumberFormat(String value, String format)} 
+     * with an empty format to use the default number format.</p>
+     *
+     * @param value The integer value to be formatted.
+     * @return The formatted number as a string.
+     */
     public static String getNumberFormat(int value) {
         return getNumberFormat(String.valueOf(value), "");
     }
+    /**
+     * Returns the given integer value formatted as a string using the specified number format.
+     *
+     * <p>This method converts the provided integer value to a string and calls {@code getNumberFormat(String value, String format)} 
+     * with the specified format.</p>
+     *
+     * @param value The integer value to be formatted.
+     * @param format The format to apply to the number.
+     * @return The formatted number as a string.
+     */
     public static String getNumberFormat(int value, String format) {
         return getNumberFormat(String.valueOf(value), format);
     }
+    /**
+     * Returns the given long value formatted as a string using the default number format.
+     *
+     * <p>This method converts the provided long value to a string and calls {@code getNumberFormat(String value, String format)} 
+     * with an empty format to use the default number format.</p>
+     *
+     * @param value The long value to be formatted.
+     * @return The formatted number as a string.
+     */
     public static String getNumberFormat(long value) {
         return getNumberFormat(String.valueOf(value), "");
     }
+    /**
+     * Returns the given long value formatted as a string using the specified number format.
+     *
+     * <p>This method converts the provided long value to a string and calls {@code getNumberFormat(String value, String format)} 
+     * with the specified format.</p>
+     *
+     * @param value The long value to be formatted.
+     * @param format The format to apply to the number.
+     * @return The formatted number as a string.
+     */
     public static String getNumberFormat(long value, String format) {
         return getNumberFormat(String.valueOf(value), format);
     }
+
     public static String getNumberFormat(float value) {
         return getNumberFormat(String.valueOf(value), "");
     }
+
     public static String getNumberFormat(float value, String format) {
         return getNumberFormat(String.valueOf(value), format);
     }
+
     public static String getNumberFormat(double value) {
         return getNumberFormat(String.valueOf(value), "");
     }
+
     public static String getNumberFormat(double value, String format) {
         return getNumberFormat(String.valueOf(value), format);
     }
+
     public static String getNumberFormat(String value) {
         return getNumberFormat(value, "");
     }
+
     //파라메터 값을 파라메터 숫자 형식으로 변환한 값을 반환한다.
     public static String getNumberFormat(String value, String format) {
         Pattern pattern = Pattern.compile("^(.*?)([#0,.]+)(.*?)$");
