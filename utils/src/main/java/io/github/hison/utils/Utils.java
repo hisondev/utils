@@ -28,6 +28,70 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Provides a comprehensive set of utility functions for various common tasks, including 
+ * string validation and manipulation, number formatting, date and time operations, 
+ * and property file handling. This class is designed to be a singleton and cannot 
+ * be instantiated, ensuring that all methods are accessed in a static context.
+ *
+ * <p>Features:</p>
+ * <ul>
+ *     <li>String Validation: Offers methods to check if a string is composed of specific character sets, 
+ *         such as alphabetic characters, numeric characters, or a combination of both. Additionally, 
+ *         includes methods to verify the presence of special characters or if the string matches a 
+ *         particular pattern.</li>
+ *     <li>Number Validation and Formatting: Provides methods to determine if a string represents a 
+ *         valid number, and supports various rounding, ceiling, floor, and truncation operations. 
+ *         Also includes functionality to format numbers according to specified patterns.</li>
+ *     <li>Date and Time Operations: Facilitates the parsing and formatting of dates and times, 
+ *         including adding or subtracting time units, and calculating the difference between dates. 
+ *         It can also determine the last day of a month or the day of the week for a given date.</li>
+ *     <li>String Manipulation: Includes methods for padding, cutting, and reversing strings, 
+ *         as well as calculating byte lengths and ensuring specific string lengths with inserted spaces.</li>
+ *     <li>Property File Handling: Simplifies the loading and retrieving of values from property files, 
+ *         supporting the retrieval of individual values, entire property sets, or keys matching a prefix.</li>
+ * </ul>
+ *
+ * <p>Example usage of date addition:</p>
+ * <pre>
+ * String newDate = Utils.addDate("2024-01-01", 5, "d");
+ * // Adds 5 days to the given date
+ * </pre>
+ *
+ * <p>Customization:</p>
+ * This class supports extensive customization through the configuration file "hison-utils-config.properties". 
+ * Users can override default formats and types by specifying their values in the configuration file. 
+ * Properties include date and time formats, number formatting patterns, and more.
+ *
+ * <pre>
+ * date.formatter=yyyy/MM/dd
+ * datetime.formatter=yyyy/MM/dd HH:mm:ss
+ * add.type=d
+ * number.formatter=#,##0.00
+ * </pre>
+ * 
+ * <p>Usage:</p>
+ * <ul>
+ *     <li>All methods in this class are static and can be accessed directly using the class name, 
+ *         e.g., <code>Utils.isAlpha("testString")</code>.</li>
+ *     <li>For date and time operations, ensure the input strings match the expected format specified 
+ *         in the configuration or use default formats.</li>
+ * </ul>
+ *
+ * <p>Dependencies:</p>
+ * <ul>
+ *     <li>Java Standard Libraries: Utilizes java.time for date and time operations, 
+ *         java.util for collections and properties, and javax.servlet for request handling.</li>
+ * </ul>
+ * 
+ * <p>Version History:</p>
+ * <ul>
+ *     <li>1.0.0: Initial release with basic utility functions.</li>
+ * </ul>
+ *
+ * @author Hani son
+ * @version 1.0.0
+ */
 public final class Utils {
     private Utils() {
         throw new UtilsException("No Utils instances for you!");
@@ -68,7 +132,19 @@ public final class Utils {
     /**********************************************************************
      * for boolean
      **********************************************************************/
-    // 문자열이 영문으로만 이루어져 있는지 확인
+    /**
+     * Checks if the given string contains only alphabetic characters (a-z, A-Z).
+     *
+     * <p>This method iterates through each character in the provided string to determine if it 
+     * is an alphabetic character. It returns {@code true} if all characters in the string are 
+     * alphabetic, and {@code false} otherwise.</p>
+     *
+     * <p><b>Note:</b> This method considers only standard English alphabetic characters and 
+     * does not account for accented characters or characters from other languages.</p>
+     *
+     * @param s The string to be checked.
+     * @return {@code true} if the string contains only alphabetic characters, {@code false} otherwise.
+     */
     public static boolean isAlpha(String s) {
         if (s == null || s.isEmpty()) {
             return false;
@@ -81,7 +157,19 @@ public final class Utils {
         return true;
     }
 
-    // 문자열이 영문과 숫자로만 이루어져 있는지 확인
+    /**
+     * Checks if the given string contains only alphabetic characters (a-z, A-Z) and digits (0-9).
+     *
+     * <p>This method iterates through each character in the provided string to determine if it 
+     * is either an alphabetic character or a digit. It returns {@code true} if all characters 
+     * in the string are alphabetic or numeric, and {@code false} otherwise.</p>
+     *
+     * <p><b>Note:</b> This method considers only standard English alphabetic characters and 
+     * numeric digits, and does not account for accented characters or characters from other languages.</p>
+     *
+     * @param s The string to be checked.
+     * @return {@code true} if the string contains only alphabetic characters and digits, {@code false} otherwise.
+     */
     public static boolean isAlphaNumber(String s) {
         if (s == null || s.isEmpty()) {
             return false;
@@ -94,7 +182,20 @@ public final class Utils {
         return true;
     }
 
-    // 문자열이 숫자로만 이루어져 있는지 확인
+    /**
+     * Checks if the given string contains only numeric characters (0-9).
+     *
+     * <p>This method iterates through each character in the provided string to determine if it 
+     * is a numeric character. It returns {@code true} if all characters in the string are 
+     * numeric, and {@code false} otherwise.</p>
+     *
+     * <p><b>Note:</b> This method does not account for numeric characters with decimal points, 
+     * negative signs, or other numeric notations. It strictly checks for digits.</p>
+     *
+     * @param s The string to be checked.
+     * @return {@code true} if the string contains only numeric characters, {@code false} otherwise.
+     */
+
     public static boolean isNumber(String s) {
         if (s == null || s.isEmpty()) {
             return false;
@@ -107,7 +208,20 @@ public final class Utils {
         return true;
     }
 
-    // 문자열이 숫자와 특수문자로만 이루어져 있는지 확인
+    /**
+     * Checks if the given string contains only numeric characters (0-9) and special symbols.
+     *
+     * <p>This method uses a regular expression pattern to determine if the provided string 
+     * contains only numeric characters and a set of predefined special symbols 
+     * (!@#$%^&*()_+\-=[]{};':"\\|,.<>/?~). It returns {@code true} if all characters in the 
+     * string match this pattern, and {@code false} otherwise.</p>
+     *
+     * <p><b>Note:</b> This method strictly checks for the specified special symbols and numeric 
+     * characters. Any other characters will cause the method to return {@code false}.</p>
+     *
+     * @param s The string to be checked.
+     * @return {@code true} if the string contains only numeric characters and specified special symbols, {@code false} otherwise.
+     */
     public static boolean isNumberSymbols(String s) {
         if (s == null || s.isEmpty()) {
             return false;
@@ -117,7 +231,19 @@ public final class Utils {
         return matcher.matches();
     }
 
-    //문자열이 특수문자를 포함하고 있으면 true를 반환한다.
+    /**
+     * Checks if the given string contains any special symbols.
+     *
+     * <p>This method uses a regular expression pattern to determine if the provided string 
+     * contains any special symbols (!@#$%^&*()_+\-=[]{};':"\\|,.<>/?~). It returns {@code true} 
+     * if the string contains at least one of these special symbols, and {@code false} otherwise.</p>
+     *
+     * <p><b>Note:</b> This method returns {@code true} if there is any match of the special symbols 
+     * in the string. It does not check for other character types.</p>
+     *
+     * @param s The string to be checked.
+     * @return {@code true} if the string contains any special symbols, {@code false} otherwise.
+     */
     public static boolean isIncludeSymbols(String s) {
         if (s == null || s.isEmpty()) {
             return false;
@@ -127,7 +253,19 @@ public final class Utils {
         return matcher.matches();
     }
 
-    //문자열이 소문자로만 이루어져 있으면 true를 반환한다.
+    /**
+     * Checks if the given string contains only lowercase alphabetic characters (a-z).
+     *
+     * <p>This method uses a regular expression pattern to determine if the provided string 
+     * contains only lowercase alphabetic characters. It returns {@code true} if all characters 
+     * in the string are lowercase alphabetic, and {@code false} otherwise.</p>
+     *
+     * <p><b>Note:</b> This method considers only standard English lowercase alphabetic characters 
+     * and does not account for accented characters or characters from other languages.</p>
+     *
+     * @param s The string to be checked.
+     * @return {@code true} if the string contains only lowercase alphabetic characters, {@code false} otherwise.
+     */
     public static boolean isLowerAlpha(String s) {
         if (s == null || s.isEmpty()) {
             return false;
@@ -135,7 +273,19 @@ public final class Utils {
         return s.matches("[a-z]+");
     }
 
-    // 문자열이 소문자와 숫자로만 이루어져 있으면 true를 반환한다.
+    /**
+     * Checks if the given string contains only lowercase alphabetic characters (a-z) and digits (0-9).
+     *
+     * <p>This method uses a regular expression pattern to determine if the provided string 
+     * contains only lowercase alphabetic characters and numeric digits. It returns {@code true} 
+     * if all characters in the string are lowercase alphabetic or numeric, and {@code false} otherwise.</p>
+     *
+     * <p><b>Note:</b> This method considers only standard English lowercase alphabetic characters 
+     * and numeric digits, and does not account for accented characters or characters from other languages.</p>
+     *
+     * @param s The string to be checked.
+     * @return {@code true} if the string contains only lowercase alphabetic characters and digits, {@code false} otherwise.
+     */
     public static boolean isLowerAlphaNumber(String s) {
         if (s == null || s.isEmpty()) {
             return false;
@@ -143,7 +293,19 @@ public final class Utils {
         return s.matches("[a-z0-9]+");
     }
     
-    // 문자열이 대문자로만 이루어져 있으면 true를 반환한다.
+    /**
+     * Checks if the given string contains only uppercase alphabetic characters (A-Z).
+     *
+     * <p>This method uses a regular expression pattern to determine if the provided string 
+     * contains only uppercase alphabetic characters. It returns {@code true} if all characters 
+     * in the string are uppercase alphabetic, and {@code false} otherwise.</p>
+     *
+     * <p><b>Note:</b> This method considers only standard English uppercase alphabetic characters 
+     * and does not account for accented characters or characters from other languages.</p>
+     *
+     * @param s The string to be checked.
+     * @return {@code true} if the string contains only uppercase alphabetic characters, {@code false} otherwise.
+     */
     public static boolean isUpperAlpha(String s) {
         if (s == null || s.isEmpty()) {
             return false;
@@ -151,7 +313,19 @@ public final class Utils {
         return s.matches("[A-Z]+");
     }
 
-    // 문자열이 대문자와 숫자로만 이루어져 있으면 true를 반환한다.
+    /**
+     * Checks if the given string contains only uppercase alphabetic characters (A-Z) and digits (0-9).
+     *
+     * <p>This method uses a regular expression pattern to determine if the provided string 
+     * contains only uppercase alphabetic characters and numeric digits. It returns {@code true} 
+     * if all characters in the string are uppercase alphabetic or numeric, and {@code false} otherwise.</p>
+     *
+     * <p><b>Note:</b> This method considers only standard English uppercase alphabetic characters 
+     * and numeric digits, and does not account for accented characters or characters from other languages.</p>
+     *
+     * @param s The string to be checked.
+     * @return {@code true} if the string contains only uppercase alphabetic characters and digits, {@code false} otherwise.
+     */
     public static boolean isUpperAlphaNumber(String s) {
         if (s == null || s.isEmpty()) {
             return false;
@@ -159,38 +333,93 @@ public final class Utils {
         return s.matches("[A-Z0-9]+");
     }
 
-    // 파라메터 문자열 값이 유효한 숫자이면 true를 반환한다.
+    /**
+     * Checks if the given string represents a valid numeric value.
+     *
+     * <p>This method uses a regular expression pattern to determine if the provided string 
+     * represents a valid number. It considers both integer and decimal numbers, and allows 
+     * for an optional leading negative sign.</p>
+     *
+     * <p>The regular expression used is <code>-?\\d+(\\.\\d+)?</code>, which matches:</p>
+     * <ul>
+     *     <li>Optional negative sign (-)</li>
+     *     <li>One or more digits (\\d+)</li>
+     *     <li>Optional decimal point followed by one or more digits (\\.\\d+)</li>
+     * </ul>
+     *
+     * @param s The string to be checked.
+     * @return {@code true} if the string represents a valid numeric value, {@code false} otherwise.
+     */
     public static boolean isNumeric(String s) {
         if (s == null || s.isEmpty()) {
             return false;
         }
         return s.matches("-?\\d+(\\.\\d+)?");
     }
-
-    // 문자열 파라메터가 정수이면 true를 반환한다.
+    /**
+     * Checks if the given string represents a valid integer value.
+     *
+     * <p>This method attempts to parse the provided string as a double to handle potential decimal 
+     * points and then compares the parsed value to its integer representation to determine if it is 
+     * an integer.</p>
+     *
+     * <p>If the string can be parsed as a double and its value is equivalent to its integer 
+     * representation, the method returns {@code true}. If the string is null, empty, or cannot be 
+     * parsed as a double, the method returns {@code false}.</p>
+     *
+     * @param s The string to be checked.
+     * @return {@code true} if the string represents a valid integer value, {@code false} otherwise.
+     */
     public static boolean isInteger(String s) {
         if (s == null || s.isEmpty()) {
             return false;
         }
         try {
-            // 소수점을 포함할 수 있는 Double로 파싱 후, 원래 값과 정수형 변환된 값 비교
             double d = Double.parseDouble(s);
             return d == (int) d;
         } catch (NumberFormatException e) {
-            return false; // 숫자 형식이 아니면 false 반환
+            return false;
         }
     }
-    // double 파라메터가 정수이면 true를 반환한다.
+    /**
+     * Checks if the given double value is an integer.
+     *
+     * <p>This method compares the provided double value to its integer representation to determine 
+     * if it is an integer. It returns {@code true} if the double value is equivalent to its integer 
+     * representation, and {@code false} otherwise.</p>
+     *
+     * @param d The double value to be checked.
+     * @return {@code true} if the double value is an integer, {@code false} otherwise.
+     */
     public static boolean isInteger(double d) {
-        return d == (int) d; // double 값과 그 정수형 변환된 값 비교
+        return d == (int) d;
     }
-
-    // float 파라메터가 정수이면 true를 반환한다.
+    /**
+     * Checks if the given float value is an integer.
+     *
+     * <p>This method compares the provided float value to its integer representation to determine 
+     * if it is an integer. It returns {@code true} if the float value is equivalent to its integer 
+     * representation, and {@code false} otherwise.</p>
+     *
+     * @param f The float value to be checked.
+     * @return {@code true} if the float value is an integer, {@code false} otherwise.
+     */
     public static boolean isInteger(float f) {
-        return f == (int) f; // float 값과 그 정수형 변환된 값 비교
+        return f == (int) f;
     }
 
-    // 문자열 파라메터가 양의 정수이면 true를 반환한다.
+    /**
+     * Checks if the given string represents a positive integer.
+     *
+     * <p>This method attempts to parse the provided string as an integer and then checks if the 
+     * parsed value is greater than zero. It returns {@code true} if the string can be parsed as 
+     * an integer and the value is positive, and {@code false} otherwise.</p>
+     *
+     * <p>If the string is null, empty, or cannot be parsed as an integer, the method returns {@code false}.</p>
+     *
+     * @param s The string to be checked.
+     * @return {@code true} if the string represents a positive integer, {@code false} otherwise.
+     */
     public static boolean isPositiveInteger(String s) {
         if (s == null || s.isEmpty()) {
             return false;
@@ -202,20 +431,57 @@ public final class Utils {
             return false;
         }
     }
-    // double 파라메터가 양의 정수이면 true를 반환한다.
-    public static boolean isPositiveInteger(double d) {
+    /**
+     * Checks if the given double value is a positive integer.
+     *
+     * <p>This method checks if the provided double value is greater than zero and if it is 
+     * equivalent to its integer representation. It returns {@code true} if both conditions are 
+     * met, and {@code false} otherwise.</p>
+     *
+     * @param d The double value to be checked.
+     * @return {@code true} if the double value is a positive integer, {@code false} otherwise.
+     */
+        public static boolean isPositiveInteger(double d) {
         return d > 0 && d == (int) d;
     }
-    // float 파라메터가 양의 정수이면 true를 반환한다.
+    /**
+     * Checks if the given float value is a positive integer.
+     *
+     * <p>This method checks if the provided float value is greater than zero and if it is 
+     * equivalent to its integer representation. It returns {@code true} if both conditions are 
+     * met, and {@code false} otherwise.</p>
+     *
+     * @param f The float value to be checked.
+     * @return {@code true} if the float value is a positive integer, {@code false} otherwise.
+     */
     public static boolean isPositiveInteger(float f) {
         return f > 0 && f == (int) f;
     }
-    // int 파라메터가 양의 정수이면 true를 반환한다.
+    /**
+     * Checks if the given int value is a positive integer.
+     *
+     * <p>This method checks if the provided int value is greater than zero. It returns {@code true} 
+     * if the value is positive, and {@code false} otherwise.</p>
+     *
+     * @param i The int value to be checked.
+     * @return {@code true} if the int value is a positive integer, {@code false} otherwise.
+     */
     public static boolean isPositiveInteger(int i) {
         return i > 0;
     }
 
-    // 문자열 파라메터가 음의 정수이면 true를 반환한다.
+    /**
+     * Checks if the given string represents a negative integer.
+     *
+     * <p>This method attempts to parse the provided string as an integer and then checks if the 
+     * parsed value is less than zero. It returns {@code true} if the string can be parsed as 
+     * an integer and the value is negative, and {@code false} otherwise.</p>
+     *
+     * <p>If the string is null, empty, or cannot be parsed as an integer, the method returns {@code false}.</p>
+     *
+     * @param s The string to be checked.
+     * @return {@code true} if the string represents a negative integer, {@code false} otherwise.
+     */
     public static boolean isNegativeInteger(String s) {
         if (s == null || s.isEmpty()) {
             return false;
@@ -227,15 +493,41 @@ public final class Utils {
             return false;
         }
     }
-    // double 파라메터가 음의 정수이면 true를 반환한다.
+    /**
+     * Checks if the given double value is a negative integer.
+     *
+     * <p>This method checks if the provided double value is less than zero and if it is 
+     * equivalent to its integer representation. It returns {@code true} if both conditions 
+     * are met, and {@code false} otherwise.</p>
+     *
+     * @param d The double value to be checked.
+     * @return {@code true} if the double value is a negative integer, {@code false} otherwise.
+     */
     public static boolean isNegativeInteger(double d) {
         return d < 0 && d == (int) d;
     }
-    // float 파라메터가 음의 정수이면 true를 반환한다.
+    /**
+     * Checks if the given float value is a negative integer.
+     *
+     * <p>This method checks if the provided float value is less than zero and if it is 
+     * equivalent to its integer representation. It returns {@code true} if both conditions 
+     * are met, and {@code false} otherwise.</p>
+     *
+     * @param f The float value to be checked.
+     * @return {@code true} if the float value is a negative integer, {@code false} otherwise.
+     */
     public static boolean isNegativeInteger(float f) {
         return f < 0 && f == (int) f;
     }
-    // int 파라메터가 음의 정수이면 true를 반환한다.
+    /**
+     * Checks if the given int value is a negative integer.
+     *
+     * <p>This method checks if the provided int value is less than zero. It returns {@code true} 
+     * if the value is negative, and {@code false} otherwise.</p>
+     *
+     * @param i The int value to be checked.
+     * @return {@code true} if the int value is a negative integer, {@code false} otherwise.
+     */
     public static boolean isNegativeInteger(int i) {
         return i < 0;
     }
@@ -252,14 +544,25 @@ public final class Utils {
         };
         for (DateTimeFormatter formatter : formatters) {
             try {
-                return LocalDate.parse(date, formatter); // 성공적으로 파싱되면 LocalDate 반환
+                return LocalDate.parse(date, formatter);
             } catch (DateTimeParseException e) {
-                // 현재 포맷터로 파싱 실패 시 다음 포맷터로 계속 시도
             }
         }
-        return null; // 모든 포맷터로 파싱 실패 시 null 반환
+        return null;
     }
-    // 파라메터 값이 날짜 형식이면 true를 반환한다.
+    /**
+     * Checks if the given string represents a valid date in one of the supported formats.
+     *
+     * <p>This method uses the {@code getDate} helper method to parse the provided string 
+     * and determine if it represents a valid date. It supports multiple date formats including 
+     * "uuuuMMdd", "uuuu-MM-dd", and "uuuu/MM/dd".</p>
+     *
+     * <p>The method returns {@code true} if the string can be parsed as a valid date, 
+     * and {@code false} otherwise.</p>
+     *
+     * @param date The string to be checked.
+     * @return {@code true} if the string represents a valid date, {@code false} otherwise.
+     */
     public static boolean isDate(String date) {
         return getDate(date) != null;
     }
@@ -274,25 +577,47 @@ public final class Utils {
         };
         for (DateTimeFormatter formatter : formatters) {
             try {
-                return LocalTime.parse(time, formatter); // 성공적으로 파싱되면 true 반환
+                return LocalTime.parse(time, formatter);
             } catch (DateTimeParseException e) {
-                // 현재 포맷터로 파싱 실패 시 다음 포맷터로 계속 시도
             }
         }
-        return null; // 모든 포맷터로 파싱 실패 시 false 반환
+        return null;
     }
-    // 문자열 값이 시간 형식이면 true를 반환한다.
+    /**
+     * Checks if the given string represents a valid time in one of the supported formats.
+     *
+     * <p>This method uses the {@code getTime} helper method to parse the provided string 
+     * and determine if it represents a valid time. It supports multiple time formats including 
+     * "HH:mm:ss" and "HHmmss".</p>
+     *
+     * <p>The method returns {@code true} if the string can be parsed as a valid time, 
+     * and {@code false} otherwise.</p>
+     *
+     * @param time The string to be checked.
+     * @return {@code true} if the string represents a valid time, {@code false} otherwise.
+     */
     public static boolean isTime(String time) {
         return getTime(time) != null;
     }
 
-    // 파라메터 값이 날짜 시간 형식이면 true를 반환한다.
+    /**
+     * Checks if the given string represents a valid date and time in the supported formats.
+     *
+     * <p>This method splits the provided string by spaces to separate the date and time parts. 
+     * It uses the {@code isDate} method to check if the date part is valid and the {@code isTime} 
+     * method to check if the time part is valid.</p>
+     *
+     * <p>The method returns {@code true} if the string can be parsed as a valid date and optionally 
+     * a valid time, and {@code false} otherwise.</p>
+     *
+     * @param datetime The string to be checked.
+     * @return {@code true} if the string represents a valid date and time, {@code false} otherwise.
+     */
     public static boolean isDatetime(String datetime) {
         if (datetime == null || datetime.isEmpty()) {
             return false;
         }
 
-        // 공백을 기준으로 문자열을 나눈다.
         String[] parts = datetime.split(" ");
         if(!isDate(parts[0])) return false;
         if (parts.length == 2) {
@@ -301,7 +626,26 @@ public final class Utils {
         return true;
     }
 
-    // 파라메터 값이 파라메터 Mask형식이면 true를 반환한다.
+    /**
+     * Checks if the given string matches the specified mask format.
+     *
+     * <p>This method compares each character in the provided value against the corresponding 
+     * character in the mask. The mask can contain the following special characters:</p>
+     * <ul>
+     *     <li>'A' - Matches any uppercase alphabetic character (A-Z).</li>
+     * <li>'a' - Matches any lowercase alphabetic character (a-z).</li>
+     *     <li>'9' - Matches any numeric digit (0-9).</li>
+     *     <li>Any other character - Must match exactly.</li>
+     * </ul>
+     *
+     * <p>The method returns {@code true} if the value matches the mask format, and {@code false} 
+     * otherwise. If the value or mask is {@code null}, or if their lengths do not match, the method 
+     * returns {@code false}.</p>
+     *
+     * @param value The string to be checked.
+     * @param mask The mask format to check against.
+     * @return {@code true} if the value matches the mask format, {@code false} otherwise.
+     */
     public static boolean isValidMask(String value, String mask) {
         if (value == null || mask == null || value.length() != mask.length()) {
             return false;
@@ -333,7 +677,7 @@ public final class Utils {
     private static LocalDateTime getDatetime(String datetime) {
         String[] datetimeArr = datetime.split(" ");
         if (datetimeArr.length > 2) {
-            return null; // 형식이 맞지 않으면 null 반환
+            return null;
         }
 
         LocalDate date = getDate(datetimeArr[0]);
@@ -346,18 +690,58 @@ public final class Utils {
         }
 
         if (date == null || time == null) {
-            return null; // 날짜 또는 시간 파싱 실패 시 null 반환
+            return null;
         }
 
         return LocalDateTime.of(date, time);
     }
-    // 날짜에 시간을 추가하고 문자열 형태로 반환한다.
+    /**
+     * Adds the specified amount of time to the given date and returns the result as a string.
+     *
+     * <p>This method adds the specified amount of time to the given date using the default add type 
+     * (e.g., days). The amount of time to add is specified as a string. This method calls 
+     * {@code addDate(String datetime, String addValue, String addType)} with an empty add type 
+     * to use the default add type.</p>
+     *
+     * @param datetime The original datetime string.
+     * @param addValue The amount of time to add, specified as a string.
+     * @return The resulting datetime string after the addition.
+     */
     public static String addDate(String datetime, String addValue) {
         return addDate(datetime, addValue, "");
     }
+    /**
+     * Adds the specified amount of time to the given date and returns the result as a string.
+     *
+     * <p>This method adds the specified amount of time to the given date using the specified add type 
+     * (e.g., days, months, years). The amount of time to add is specified as a string. This method calls 
+     * {@code addDate(String datetime, String addValue, String addType, String format)} with an empty format 
+     * to use the default format.</p>
+     *
+     * @param datetime The original datetime string.
+     * @param addValue The amount of time to add, specified as a string.
+     * @param addType The type of time unit to add (e.g., "d" for days, "M" for months, "y" for years).
+     * @return The resulting datetime string after the addition.
+     */
     public static String addDate(String datetime, String addValue, String addType) {
         return addDate(datetime, addValue, addType, "");
     }
+    /**
+     * Adds the specified amount of time to the given date and returns the result as a string in the specified format.
+     *
+     * <p>This method adds the specified amount of time to the given date using the specified add type 
+     * (e.g., days, months, years). The amount of time to add is specified as a string. If the add value is not 
+     * a valid integer, a {@code UtilsException} is thrown. This method calls 
+     * {@code addDate(String datetime, int addValue, String addType, String format)} with the parsed integer 
+     * add value.</p>
+     *
+     * @param datetime The original datetime string.
+     * @param addValue The amount of time to add, specified as a string.
+     * @param addType The type of time unit to add (e.g., "d" for days, "M" for months, "y" for years).
+     * @param format The format of the resulting datetime string.
+     * @return The resulting datetime string after the addition.
+     * @throws UtilsException If the add value is not a valid integer.
+     */
     public static String addDate(String datetime, String addValue, String addType, String format) {
         if(!isInteger(addValue)) {
             throw new UtilsException("Please enter a valid addValue(Integer).");
@@ -365,12 +749,63 @@ public final class Utils {
         int add = Integer.parseInt(addValue);
         return addDate(datetime, add, addType, format);
     }
+    /**
+     * Adds the specified amount of time to the given date and returns the result as a string.
+     *
+     * <p>This method adds the specified amount of time to the given date using the default add type 
+     * (e.g., days). The amount of time to add is specified as an integer. This method calls 
+     * {@code addDate(String datetime, int addValue, String addType)} with an empty add type 
+     * to use the default add type.</p>
+     *
+     * @param datetime The original datetime string.
+     * @param addValue The amount of time to add, specified as an integer.
+     * @return The resulting datetime string after the addition.
+     */
     public static String addDate(String datetime, int addValue) {
         return addDate(datetime, addValue, "");
     }
+    /**
+     * Adds the specified amount of time to the given date and returns the result as a string.
+     *
+     * <p>This method adds the specified amount of time to the given date using the specified add type 
+     * (e.g., days, months, years). The amount of time to add is specified as an integer. This method calls 
+     * {@code addDate(String datetime, int addValue, String addType, String format)} with an empty format 
+     * to use the default format.</p>
+     *
+     * @param datetime The original datetime string.
+     * @param addValue The amount of time to add, specified as an integer.
+     * @param addType The type of time unit to add (e.g., "d" for days, "M" for months, "y" for years).
+     * @return The resulting datetime string after the addition.
+     */
     public static String addDate(String datetime, int addValue, String addType) {
         return addDate(datetime, addValue, addType, "");
     }
+    /**
+     * Adds the specified amount of time to the given date and returns the result as a string in the specified format.
+     *
+     * <p>This method adds the specified amount of time to the given date using the specified add type 
+     * (e.g., years, months, days, hours, minutes, seconds). The amount of time to add is specified as an integer. 
+     * If the add type is not provided, the default add type is used. The resulting datetime is formatted 
+     * according to the specified format or the default format if none is provided.</p>
+     *
+     * <p>If the datetime string cannot be parsed, a {@code UtilsException} is thrown. The method supports 
+     * various add types including:</p>
+     * <ul>
+     *     <li>"y" - Years</li>
+     *     <li>"M" - Months</li>
+     *     <li>"d" - Days</li>
+     *     <li>"h" - Hours</li>
+     *     <li>"m" - Minutes</li>
+     *     <li>"s" - Seconds</li>
+     * </ul>
+     *
+     * @param datetime The original datetime string.
+     * @param addValue The amount of time to add, specified as an integer.
+     * @param addType The type of time unit to add (e.g., "y" for years, "M" for months, "d" for days, "h" for hours, "m" for minutes, "s" for seconds).
+     * @param format The format of the resulting datetime string.
+     * @return The resulting datetime string after the addition.
+     * @throws UtilsException If the datetime string cannot be parsed or if an invalid add type is provided.
+     */
     public static String addDate(String datetime, int addValue, String addType, String format) {
         LocalDateTime dt = getDatetime(datetime);
         if(dt == null) {
@@ -413,9 +848,45 @@ public final class Utils {
         return getDatetimeWithFormat(dt, format);
     }
 
+    /**
+     * Calculates the difference between two datetime strings and returns the result as an integer.
+     *
+     * <p>This method calculates the difference between two datetime strings using the default difference type 
+     * (e.g., days). It calls {@code getDateDiff(String datetime1, String datetime2, String diffType)} with an empty 
+     * difference type to use the default difference type.</p>
+     *
+     * @param datetime1 The first datetime string.
+     * @param datetime2 The second datetime string.
+     * @return The difference between the two datetime strings as an integer.
+     */
     public static int getDateDiff(String datetime1, String datetime2) {
         return getDateDiff(datetime1, datetime2, "");
     }
+    /**
+     * Calculates the difference between two datetime strings using the specified difference type and returns the result as an integer.
+     *
+     * <p>This method calculates the difference between two datetime strings using the specified difference type 
+     * (e.g., years, months, days, hours, minutes, seconds). If the difference type is not provided, the default 
+     * difference type is used.</p>
+     *
+     * <p>If either of the datetime strings cannot be parsed, a {@code UtilsException} is thrown. The method supports 
+     * various difference types including:</p>
+     * <ul>
+     *     <li>"y" - Years</li>
+     *     <li>"M" - Months</li>
+     *     <li>"d" - Days</li>
+     *     <li>"h" - Hours</li>
+     *     <li>"m" - Minutes</li>
+     *     <li>"s" - Seconds</li>
+     * </ul>
+     *
+     * @param datetime1 The first datetime string.
+     * @param datetime2 The second datetime string.
+     * @param diffType The type of time unit to calculate the difference (e.g., "y" for years, "M" for months, "d" for days, "h" for hours, "m" for minutes, "s" for seconds).
+     * @return The difference between the two datetime strings as an integer.
+     * @throws UtilsException If either of the datetime strings cannot be parsed.
+     * @throws IllegalArgumentException If an invalid difference type is provided.
+     */
     public static int getDateDiff(String datetime1, String datetime2, String diffType) {
         LocalDateTime dt1 = getDatetime(datetime1);
         LocalDateTime dt2 = getDatetime(datetime2);
@@ -450,10 +921,32 @@ public final class Utils {
         return Long.valueOf(result).intValue();
     }
 
-    // String 타입 월 파라메터에 대한 getMonthName 메서드
+    /**
+     * Returns the month name for the given month string.
+     *
+     * <p>This method retrieves the month name for the provided month string. 
+     * It calls {@code getMonthName(String month, boolean isFullName)} with {@code true} 
+     * to return the full month name.</p>
+     *
+     * @param month The month string (1-12) for which the name is to be retrieved.
+     * @return The full name of the month.
+     * @throws UtilsException If the provided month string is not a valid integer.
+     */
     public static String getMonthName(String month) {
         return getMonthName(month, true);
     }
+    /**
+     * Returns the month name for the given month string, with an option to return the full name or short name.
+     *
+     * <p>This method retrieves the month name for the provided month string. 
+     * It converts the string to an integer and then calls {@code getMonthName(int month, boolean isFullName)} 
+     * to return either the full month name or the short month name based on the {@code isFullName} parameter.</p>
+     *
+     * @param month The month string (1-12) for which the name is to be retrieved.
+     * @param isFullName If {@code true}, returns the full month name; if {@code false}, returns the short month name.
+     * @return The name of the month, either full or short.
+     * @throws UtilsException If the provided month string is not a valid integer.
+     */
     public static String getMonthName(String month, boolean isFullName) {
         if(!isInteger(month)) {
             throw new UtilsException("Please enter a valid month.");
@@ -462,10 +955,33 @@ public final class Utils {
 
         return getMonthName(mon, isFullName);
     }
-    // int 타입 월 파라메터에 대한 getMonthName 메서드
+    /**
+     * Returns the month name for the given month integer.
+     *
+     * <p>This method retrieves the month name for the provided month integer. 
+     * It calls {@code getMonthName(int month, boolean isFullName)} with {@code true} 
+     * to return the full month name.</p>
+     *
+     * @param month The month integer (1-12) for which the name is to be retrieved.
+     * @return The full name of the month.
+     * @throws UtilsException If the provided month integer is not in the range 1-12.
+     */
     public static String getMonthName(int month) {
         return getMonthName(month, true);
     }
+    /**
+     * Returns the month name for the given month integer, with an option to return the full name or short name.
+     *
+     * <p>This method retrieves the month name for the provided month integer. 
+     * If the month integer is not in the range 1-12, a {@code UtilsException} is thrown. 
+     * The method uses {@code TextStyle.FULL} or {@code TextStyle.SHORT} based on the {@code isFullName} parameter 
+     * to return either the full month name or the short month name.</p>
+     *
+     * @param month The month integer (1-12) for which the name is to be retrieved.
+     * @param isFullName If {@code true}, returns the full month name; if {@code false}, returns the short month name.
+     * @return The name of the month, either full or short.
+     * @throws UtilsException If the provided month integer is not in the range 1-12.
+     */
     public static String getMonthName(int month, boolean isFullName) {
         if (month < 1 || month > 12) {
             throw new UtilsException("Please enter a valid month.");
@@ -476,16 +992,62 @@ public final class Utils {
         return m.getDisplayName(style, Locale.ENGLISH);
     }
 
-    // 파라메터의 날짜 문자열을 파라메터 포맷의 형식으로 가져온다.
+    /**
+     * Returns the given date string formatted according to the specified format.
+     *
+     * <p>This method formats the provided date string using the specified format. 
+     * It calls {@code getDateWithFormat(String date, String format)} with an empty format 
+     * to use the default date format.</p>
+     *
+     * @param date The date string to be formatted.
+     * @return The formatted date string.
+     * @throws UtilsException If the provided date string is not valid.
+     */
     public static String getDateWithFormat(String date) {
         return getDateWithFormat(date, "");
     }
+    /**
+     * Returns the given date string formatted according to the specified format.
+     *
+     * <p>This method formats the provided date string using the specified format. 
+     * It first converts the date string to a {@code LocalDate} object using the {@code getDate} method. 
+     * If the format is not provided or is empty, the default date format is used.</p>
+     *
+     * @param date The date string to be formatted.
+     * @param format The format to apply to the date string.
+     * @return The formatted date string.
+     * @throws UtilsException If the provided date string is not valid.
+     */
     public static String getDateWithFormat(String date, String format) {
         return getDateWithFormat(getDate(date), format);
     }
+    /**
+     * Returns the given LocalDate formatted according to the specified format.
+     *
+     * <p>This method formats the provided {@code LocalDate} using the specified format. 
+     * It calls {@code getDateWithFormat(LocalDate date, String format)} with an empty format 
+     * to use the default date format.</p>
+     *
+     * @param date The {@code LocalDate} to be formatted.
+     * @return The formatted date string.
+     * @throws UtilsException If the provided date is not valid.
+     */
     public static String getDateWithFormat(LocalDate date) {
         return getDateWithFormat(date, "");
     }
+    /**
+     * Returns the given LocalDate formatted according to the specified format.
+     *
+     * <p>This method formats the provided {@code LocalDate} using the specified format. 
+     * If the format is not provided or is empty, the default date format is used. 
+     * If the {@code LocalDate} is {@code null}, a {@code UtilsException} is thrown. 
+     * If the format is invalid, a {@code UtilsException} is thrown.</p>
+     *
+     * @param date The {@code LocalDate} to be formatted.
+     * @param format The format to apply to the date.
+     * @return The formatted date string.
+     * @throws UtilsException If the provided date is {@code null} or if the format is invalid.
+     */
     public static String getDateWithFormat(LocalDate date, String format) {
         if(date == null) throw new UtilsException("Please enter a valid date.");
         if("".equals(format) || format == null) format = DATE_FORMATTER;
@@ -497,16 +1059,62 @@ public final class Utils {
         }
     }
 
-    // 파라메터의 날짜시간 문자열을 파라메터 포맷의 형식으로 가져온다.
+    /**
+     * Returns the given datetime string formatted according to the specified format.
+     *
+     * <p>This method formats the provided datetime string using the specified format. 
+     * It calls {@code getDatetimeWithFormat(String datetime, String format)} with an empty format 
+     * to use the default datetime format.</p>
+     *
+     * @param datetime The datetime string to be formatted.
+     * @return The formatted datetime string.
+     * @throws UtilsException If the provided datetime string is not valid.
+     */
     public static String getDatetimeWithFormat(String datetime) {
         return getDatetimeWithFormat(datetime, "");
     }
+    /**
+     * Returns the given datetime string formatted according to the specified format.
+     *
+     * <p>This method formats the provided datetime string using the specified format. 
+     * It first converts the datetime string to a {@code LocalDateTime} object using the {@code getDatetime} method. 
+     * If the format is not provided or is empty, the default datetime format is used.</p>
+     *
+     * @param datetime The datetime string to be formatted.
+     * @param format The format to apply to the datetime string.
+     * @return The formatted datetime string.
+     * @throws UtilsException If the provided datetime string is not valid.
+     */
     public static String getDatetimeWithFormat(String datetime, String format) {
         return getDatetimeWithFormat(getDatetime(datetime), format);
     }
+    /**
+     * Returns the given LocalDateTime formatted according to the specified format.
+     *
+     * <p>This method formats the provided {@code LocalDateTime} using the specified format. 
+     * It calls {@code getDatetimeWithFormat(LocalDateTime datetime, String format)} with an empty format 
+     * to use the default datetime format.</p>
+     *
+     * @param datetime The {@code LocalDateTime} to be formatted.
+     * @return The formatted datetime string.
+     * @throws UtilsException If the provided datetime is not valid.
+     */
     public static String getDatetimeWithFormat(LocalDateTime datetime) {
         return getDatetimeWithFormat(datetime, "");
     }
+    /**
+     * Returns the given LocalDateTime formatted according to the specified format.
+     *
+     * <p>This method formats the provided {@code LocalDateTime} using the specified format. 
+     * If the format is not provided or is empty, the default datetime format is used. 
+     * If the {@code LocalDateTime} is {@code null}, a {@code UtilsException} is thrown. 
+     * If the format is invalid, a {@code UtilsException} is thrown.</p>
+     *
+     * @param datetime The {@code LocalDateTime} to be formatted.
+     * @param format The format to apply to the datetime.
+     * @return The formatted datetime string.
+     * @throws UtilsException If the provided datetime is {@code null} or if the format is invalid.
+     */
     public static String getDatetimeWithFormat(LocalDateTime datetime, String format) {
         if(datetime == null) throw new UtilsException("Please enter a valid date.");
         if("".equals(format) || format == null) format = DATETIME_FORMATTER;
@@ -518,16 +1126,73 @@ public final class Utils {
         }
     }
 
-    //해당 날짜의 요일을 반환한다.
+    /**
+     * Returns the day of the week for the given date string.
+     *
+     * <p>This method retrieves the day of the week for the provided date string. 
+     * It calls {@code getDayOfWeek(String date, String dayOfWeekType)} with an empty 
+     * day of the week type to use the default day of the week type.</p>
+     *
+     * @param date The date string for which the day of the week is to be retrieved.
+     * @return The day of the week as a string.
+     * @throws UtilsException If the provided date string is not valid.
+     */
     public static String getDayOfWeek(String date) {
         return getDayOfWeek(date, "");
     }
+    /**
+     * Returns the day of the week for the given date string, formatted according to the specified day of the week type.
+     *
+     * <p>This method retrieves the day of the week for the provided date string. 
+     * It first converts the date string to a {@code LocalDate} object using the {@code getDate} method. 
+     * The day of the week is then formatted according to the specified day of the week type. 
+     * If the day of the week type is not provided or is empty, the default day of the week type is used.</p>
+     *
+     * @param date The date string for which the day of the week is to be retrieved.
+     * @param dayOfWeekType The format to apply to the day of the week (e.g., "d" for numeric, "dy" for short name, "day" for full name).
+     * @return The day of the week as a string.
+     * @throws UtilsException If the provided date string is not valid.
+     */
     public static String getDayOfWeek(String date, String dayOfWeekType) {
         return getDayOfWeek(getDate(date), dayOfWeekType);
     }
+    /**
+     * Returns the day of the week for the given LocalDate, formatted according to the default day of the week type.
+     *
+     * <p>This method retrieves the day of the week for the provided {@code LocalDate}. 
+     * It calls {@code getDayOfWeek(LocalDate date, String dayOfWeekType)} with an empty 
+     * day of the week type to use the default day of the week type.</p>
+     *
+     * @param date The {@code LocalDate} for which the day of the week is to be retrieved.
+     * @return The day of the week as a string.
+     * @throws UtilsException If the provided date is not valid.
+     */
     public static String getDayOfWeek(LocalDate date) {
         return getDayOfWeek(date, "");
     }
+    /**
+     * Returns the day of the week for the given LocalDate, formatted according to the specified day of the week type.
+     *
+     * <p>This method retrieves the day of the week for the provided {@code LocalDate}. 
+     * The day of the week is formatted according to the specified day of the week type. 
+     * If the day of the week type is not provided or is empty, the default day of the week type is used. 
+     * If the {@code LocalDate} is {@code null}, a {@code UtilsException} is thrown. 
+     * If an invalid day of the week type is provided, a {@code UtilsException} is thrown.</p>
+     *
+     * <p>The method supports various day of the week types including:</p>
+     * <ul>
+     *     <li>"d" - Numeric (1-7)</li>
+     *     <li>"dy" - Short name (e.g., Mon, Tue)</li>
+     *     <li>"day" - Full name (e.g., Monday, Tuesday)</li>
+     *     <li>"kdy" - Short name in Korean (e.g., 월, 화)</li>
+     *     <li>"kday" - Full name in Korean (e.g., 월요일, 화요일)</li>
+     * </ul>
+     *
+     * @param date The {@code LocalDate} for which the day of the week is to be retrieved.
+     * @param dayOfWeekType The format to apply to the day of the week (e.g., "d" for numeric, "dy" for short name, "day" for full name).
+     * @return The day of the week as a string.
+     * @throws UtilsException If the provided date is {@code null} or if an invalid day of the week type is provided.
+     */
     public static String getDayOfWeek(LocalDate date, String dayOfWeekType) {
         if (date == null) {
             throw new UtilsException("Please enter a valid date.");
@@ -551,13 +1216,37 @@ public final class Utils {
         }
     }
 
-    // 해당 연월의 마지막 일자를 반환한다.
+    /**
+     * Returns the last day of the month for the given LocalDate.
+     *
+     * <p>This method retrieves the last day of the month for the provided {@code LocalDate}. 
+     * If the {@code LocalDate} is {@code null}, a {@code UtilsException} is thrown.</p>
+     *
+     * @param date The {@code LocalDate} for which the last day of the month is to be retrieved.
+     * @return The last day of the month as an integer.
+     * @throws UtilsException If the provided date is {@code null}.
+     */
     public static int getLastDay(LocalDate date) {
         if (date == null) {
             throw new UtilsException("Please enter a valid date.");
         }
         return date.with(TemporalAdjusters.lastDayOfMonth()).getDayOfMonth();
     }
+    /**
+     * Returns the last day of the month for the given year and month string.
+     *
+     * <p>This method retrieves the last day of the month for the provided year and month string. 
+     * It first attempts to parse the string directly into a {@code LocalDate}. If that fails, it 
+     * appends a day part ("01") to the string and tries to parse it again. If the year and month 
+     * string is longer than 6 characters, it checks for date separators ("/" or "-") and appends 
+     * the day part accordingly.</p>
+     *
+     * <p>If the resulting date cannot be parsed, a {@code UtilsException} is thrown.</p>
+     *
+     * @param yearMonth The year and month string for which the last day of the month is to be retrieved.
+     * @return The last day of the month as an integer.
+     * @throws UtilsException If the provided year and month string is not valid.
+     */
     public static int getLastDay(String yearMonth) {
         LocalDate localDate = getDate(yearMonth);
         if(localDate != null) {
@@ -578,19 +1267,54 @@ public final class Utils {
         return getLastDay(getDate(date));
     }
 
-    // 현재 날짜와 시간을 지정된 포맷에 따라 반환한다.
+    /**
+     * Returns the current system date and time formatted according to the default datetime format.
+     *
+     * <p>This method retrieves the current system date and time and formats it using the default 
+     * datetime format. It calls {@code getSysDatetime(String format)} with an empty format to use 
+     * the default datetime format.</p>
+     *
+     * @return The current system date and time as a formatted string.
+     */
     public static String getSysDatetime() {
         return getSysDatetime("");
     }
+    /**
+     * Returns the current system date and time formatted according to the specified format.
+     *
+     * <p>This method retrieves the current system date and time and formats it using the specified 
+     * format. If the format is not provided or is empty, the default datetime format is used.</p>
+     *
+     * @param format The format to apply to the current system date and time.
+     * @return The current system date and time as a formatted string.
+     */
     public static String getSysDatetime(String format) {
         if("".equals(format) || format == null) format = DATETIME_FORMATTER;
         return getDatetimeWithFormat(LocalDateTime.now(), format);
     }
 
-    // 현재 시스템의 날짜에 해당하는 요일을 반환한다.
+    /**
+     * Returns the current day of the week formatted according to the default day of the week type.
+     *
+     * <p>This method retrieves the current day of the week and formats it using the default 
+     * day of the week type. It calls {@code getSysDayOfWeek(String dayType)} with an empty 
+     * day of the week type to use the default format.</p>
+     *
+     * @return The current day of the week as a formatted string.
+     */
     public static String getSysDayOfWeek() {
         return getSysDayOfWeek("");
     }
+    /**
+     * Returns the current day of the week formatted according to the specified day of the week type.
+     *
+     * <p>This method retrieves the current day of the week and formats it using the specified 
+     * day of the week type. If the day of the week type is not provided or is empty, the default 
+     * day of the week type is used.</p>
+     *
+     * @param dayType The format to apply to the current day of the week (e.g., "d" for numeric, "dy" for short name, "day" for full name).
+     * @return The current day of the week as a formatted string.
+     */
     public static String getSysDayOfWeek(String dayType) {
         return getDayOfWeek(LocalDate.now(), dayType);
     }
