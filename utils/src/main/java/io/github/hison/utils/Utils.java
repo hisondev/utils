@@ -103,7 +103,7 @@ public final class Utils {
      * for boolean
      **********************************************************************/
     /**
-     * <h4>Checks if the input string consists only of English alphabet characters.</h4>
+     * <p>Checks if the input string consists only of English alphabet characters.</p>
      * <p>
      * This method verifies that a given string {@code s} contains only characters
      * from 'A' to 'Z' and 'a' to 'z'. It returns {@code true} if the string is
@@ -127,7 +127,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Checks if the input string consists only of English alphabet characters and digits.</h4>
+     * <p>Checks if the input string consists only of English alphabet characters and digits.</p>
      * <p>
      * This method verifies that a given string {@code s} contains only characters
      * from 'A' to 'Z', 'a' to 'z', and digits from '0' to '9'. It returns {@code true} 
@@ -157,7 +157,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Checks if the input string consists only of digits.</h4>
+     * <p>Checks if the input string consists only of digits.</p>
      * <p>
      * This method verifies that a given string {@code s} contains only digit characters
      * from '0' to '9'. It returns {@code true} if the string is exclusively composed of digits,
@@ -186,10 +186,10 @@ public final class Utils {
     }
 
     /**
-     * <h4>Checks if the input string consists only of digits and specified special characters.</h4>
+     * <p>Checks if the input string consists only of digits and specified special characters.</p>
      * <p>
      * This method verifies that a given string {@code s} contains only digits (0-9) and 
-     * the following special characters: !@#$%^&*()_+-=[]{};':"\\|,.<>/?~. It returns {@code true}
+     * the following special characters: !@#$%^&amp;*()_+-=[]{};':"\\|,.&lt;&gt;/?~. It returns {@code true}
      * if the string exclusively consists of these characters, otherwise {@code false}. 
      * An empty string or a {@code null} input will also return {@code false}.
      * </p>
@@ -212,10 +212,10 @@ public final class Utils {
     }
 
     /**
-     * <h4>Checks if the input string contains any special characters.</h4>
+     * <p>Checks if the input string contains any special characters.</p>
      * <p>
      * This method verifies that a given string {@code s} contains at least one of the 
-     * following special characters: !@#$%^&*()_+-=[]{};':"\\|,.<>/?~. It returns {@code true}
+     * following special characters: !@#$%^&amp;*()_+-=[]{};':"\\|,.&lt;&gt;/?~. It returns {@code true}
      * if any of these characters are present in the string, otherwise {@code false}. 
      * An empty string or a {@code null} input will also return {@code false}.
      * </p>
@@ -237,7 +237,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Checks if the input string consists only of lowercase English alphabet characters.</h4>
+     * <p>Checks if the input string consists only of lowercase English alphabet characters.</p>
      * <p>
      * This method verifies that a given string {@code s} is exclusively composed of lowercase
      * letters from 'a' to 'z'. It returns {@code true} if the string does not contain any 
@@ -262,7 +262,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Checks if the input string consists only of lowercase English alphabet characters and digits.</h4>
+     * <p>Checks if the input string consists only of lowercase English alphabet characters and digits.</p>
      * <p>
      * This method verifies that a given string {@code s} contains only lowercase letters
      * from 'a' to 'z' and digits from '0' to '9'. It returns {@code true} if the string
@@ -288,7 +288,7 @@ public final class Utils {
     }
     
     /**
-     * <h4>Checks if the input string consists only of uppercase English alphabet characters.</h4>
+     * <p>Checks if the input string consists only of uppercase English alphabet characters.</p>
      * <p>
      * This method verifies that a given string {@code s} is exclusively composed of uppercase
      * letters from 'A' to 'Z'. It returns {@code true} if the string does not contain any 
@@ -313,7 +313,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Checks if the input string consists only of uppercase English alphabet characters and digits.</h4>
+     * <p>Checks if the input string consists only of uppercase English alphabet characters and digits.</p>
      * <p>
      * This method verifies that a given string {@code s} contains only uppercase letters
      * from 'A' to 'Z' and digits from '0' to '9'. It returns {@code true} if the string
@@ -339,7 +339,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Checks if the input string represents a valid numeric value.</h4>
+     * <p>Checks if the input string represents a valid numeric value.</p>
      * <p>
      * This method verifies that a given string {@code s} is a valid representation of a numeric value.
      * It supports both integers and floating-point numbers, including negative values. The method
@@ -363,7 +363,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Checks if the input string represents a valid integer value.</h4>
+     * <p>Checks if the input string represents a valid integer value.</p>
      * <p>
      * This method verifies whether a given string {@code s} can be parsed as a double and then checks
      * if it is equivalent to its integer form. It is designed to accurately identify strings that
@@ -396,7 +396,7 @@ public final class Utils {
         }
     }
     /**
-     * <h4>Checks if the provided double value represents an integer.</h4>
+     * <p>Checks if the provided double value represents an integer.</p>
      * <p>
      * This method determines whether a given double value {@code d} is effectively an integer by
      * comparing it to its casted integer form. It returns {@code true} if the double value does not
@@ -414,7 +414,7 @@ public final class Utils {
         return d == (int) d;
     }
     /**
-     * <h4>Checks if the provided float value represents an integer.</h4>
+     * <p>Checks if the provided float value represents an integer.</p>
      * <p>
      * This method evaluates whether a given float value {@code f} qualifies as an integer by
      * comparing it with its casted integer form. If the float value equals its integer counterpart,
@@ -434,7 +434,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Checks if the input string represents a positive integer.</h4>
+     * <p>Checks if the input string represents a positive integer.</p>
      * <p>
      * This method determines whether a given string {@code s} can be parsed as an integer and
      * if that integer is greater than zero. It is designed to accurately identify strings that
@@ -467,7 +467,7 @@ public final class Utils {
         }
     }
     /**
-     * <h4>Checks if the provided double value represents a positive integer.</h4>
+     * <p>Checks if the provided double value represents a positive integer.</p>
      * <p>
      * This method evaluates whether a given double value {@code d} is both greater than zero
      * and has no fractional part, indicating it is an integer. It achieves this by first checking
@@ -487,7 +487,7 @@ public final class Utils {
         return d > 0 && d == (int) d;
     }
     /**
-     * <h4>Checks if the provided float value represents a positive integer.</h4>
+     * <p>Checks if the provided float value represents a positive integer.</p>
      * <p>
      * This method determines whether a given float value {@code f} qualifies as a positive integer
      * by first ensuring the value is greater than zero and then confirming that it does not contain 
@@ -508,7 +508,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Checks if the input string represents a negative integer.</h4>
+     * <p>Checks if the input string represents a negative integer.</p>
      * <p>
      * This method determines whether a given string {@code s} can be parsed as an integer and
      * if that integer is less than zero. It is designed to accurately identify strings that
@@ -541,7 +541,7 @@ public final class Utils {
         }
     }
     /**
-     * <h4>Checks if the provided double value represents a negative integer.</h4>
+     * <p>Checks if the provided double value represents a negative integer.</p>
      * <p>
      * This method evaluates whether a given double value {@code d} is both less than zero
      * and has no fractional part, indicating it is an integer. It achieves this by first checking
@@ -561,7 +561,7 @@ public final class Utils {
         return d < 0 && d == (int) d;
     }
     /**
-     * <h4>Checks if the provided float value represents a negative integer.</h4>
+     * <p>Checks if the provided float value represents a negative integer.</p>
      * <p>
      * This method determines whether a given float value {@code f} qualifies as a negative integer
      * by first ensuring the value is less than zero and then confirming that it does not contain 
@@ -601,7 +601,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Checks if the input string represents a valid date.</h4>
+     * <p>Checks if the input string represents a valid date.</p>
      * <p>
      * This method verifies whether a given string {@code date} can be parsed as a {@link LocalDate}
      * using predefined date formats. The supported formats are "uuuuMMdd", "uuuu-MM-dd", and "uuuu/MM/dd".
@@ -646,7 +646,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Checks if the input string represents a valid time format.</h4>
+     * <p>Checks if the input string represents a valid time format.</p>
      * <p>
      * This method verifies whether a given string {@code time} can be parsed as a {@link LocalTime}
      * using predefined time formats. The supported formats are "HH:mm:ss" and "HHmmss". It leverages
@@ -674,7 +674,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Checks if the input string represents a valid date and time format.</h4>
+     * <p>Checks if the input string represents a valid date and time format.</p>
      * <p>
      * This method determines whether a given string {@code datetime} can be parsed as a valid
      * date and optionally a time. The string is expected to be in one of the following formats:
@@ -717,13 +717,13 @@ public final class Utils {
     }
 
     /**
-     * <h4>Checks if the input string represents a valid email address.</h4>
+     * <p>Checks if the input string represents a valid email address.</p>
      * <p>
      * This method determines whether a given string {@code email} conforms to a common
      * pattern for email addresses. The pattern supports email addresses that:
      * </p>
      * <ul>
-     * <li>Start with alphanumeric characters, underscores (_), pluses (+), ampersands (&), asterisks (*), or hyphens (-).</li>
+     * <li>Start with alphanumeric characters, underscores (_), pluses (+), ampersands (&amp;), asterisks (*), or hyphens (-).</li>
      * <li>May contain dots (.) separating alphanumeric and allowed special characters, but not consecutively.</li>
      * <li>Include an @ symbol separating the user name from the domain name.</li>
      * <li>Have a domain name that includes alphanumeric characters or hyphens (-) and at least one dot (.) separating domain levels.</li>
@@ -748,7 +748,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Checks if the input string represents a valid URL.</h4>
+     * <p>Checks if the input string represents a valid URL.</p>
      * <p>
      * This method determines whether a given string {@code url} conforms to a commonly accepted
      * pattern for URLs. This pattern supports both HTTP and HTTPS protocols and optionally includes
@@ -777,7 +777,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Checks if the input string represents a valid IPv4 address.</h4>
+     * <p>Checks if the input string represents a valid IPv4 address.</p>
      * <p>
      * This method determines whether a given string {@code ip} conforms to the standard IPv4 address format.
      * An IPv4 address consists of four octets separated by dots ('.'). Each octet should be a decimal number
@@ -806,7 +806,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Checks if the input string represents a valid IPv6 address.</h4>
+     * <p>Checks if the input string represents a valid IPv6 address.</p>
      * <p>
      * This method determines whether a given string {@code ip} conforms to the standard IPv6 address format.
      * IPv6 addresses consist of eight groups of four hexadecimal digits, but various shorthand notations are
@@ -864,7 +864,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Checks if the input string conforms to the specified mask format.</h4>
+     * <p>Checks if the input string conforms to the specified mask format.</p>
      * <p>
      * This method determines whether a given string {@code value} matches a specified mask {@code mask}
      * where certain characters in the mask dictate the type of characters allowed at their respective
@@ -943,7 +943,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Adds a specified amount of days to a given date or datetime string, represented as a string.</h4>
+     * <p>Adds a specified amount of days to a given date or datetime string, represented as a string.</p>
      * <p>
      * This method is a convenience overload of {@link #addDate(String, int, String, String)},
      * with the addition type defaulted to days and both the addition value and format are specified as strings.
@@ -957,7 +957,7 @@ public final class Utils {
         return addDate(datetime, addValue, "");
     }
     /**
-     * <h4>Adds a specified amount of time to a given date or datetime string, according to the specified type of addition, both represented as strings.</h4>
+     * <p>Adds a specified amount of time to a given date or datetime string, according to the specified type of addition, both represented as strings.</p>
      * <p>
      * This method is a convenience overload of {@link #addDate(String, int, String, String)},
      * allowing the addition of time to a datetime string with the addition value and type specified as strings and the format defaulted.
@@ -972,7 +972,7 @@ public final class Utils {
         return addDate(datetime, addValue, addType, "");
     }
     /**
-     * <h4>Adds a specified amount of time to a given date or datetime string, allowing detailed specification of addition value, type, and output format.</h4>
+     * <p>Adds a specified amount of time to a given date or datetime string, allowing detailed specification of addition value, type, and output format.</p>
      * <p>
      * This method enables adding a precise amount of time to a datetime string where the addition value, type, and desired output format are specified as strings.
      * The {@code addValue} is converted to an integer, and the method proceeds to add the specified time to the datetime. If the {@code addValue} cannot be
@@ -994,7 +994,7 @@ public final class Utils {
         return addDate(datetime, add, addType, format);
     }
     /**
-     * <h4>Adds a specified amount of days to a given date or datetime string.</h4>
+     * <p>Adds a specified amount of days to a given date or datetime string.</p>
      * <p>
      * This method is a convenience overload of {@link #addDate(String, int, String, String)},
      * with the addition type defaulted to days and format defaulted to the class's default date or datetime format.
@@ -1008,7 +1008,7 @@ public final class Utils {
         return addDate(datetime, addValue, "");
     }
     /**
-     * <h4>Adds a specified amount of time to a given date or datetime string, according to the specified type of addition.</h4>
+     * <p>Adds a specified amount of time to a given date or datetime string, according to the specified type of addition.</p>
      * <p>
      * This method is a convenience overload of {@link #addDate(String, int, String, String)},
      * with the format defaulted to the class's default date or datetime format. It allows adding years, months, days, hours, minutes, or seconds.
@@ -1024,7 +1024,7 @@ public final class Utils {
         return addDate(datetime, addValue, addType, "");
     }
     /**
-     * <h4>Adds a specified amount of time to a given datetime string and formats the result according to the specified format.</h4>
+     * <p>Adds a specified amount of time to a given datetime string and formats the result according to the specified format.</p>
      * <p>
      * This method allows for adding a specific amount of time (years, months, days, hours, minutes, or seconds) to a datetime
      * string represented in a recognized format. The result is then formatted into a string according to the specified format
@@ -1083,7 +1083,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Calculates the difference in days between two dates or datetimes.</h4>
+     * <p>Calculates the difference in days between two dates or datetimes.</p>
      * <p>
      * This method is a convenience overload of {@link #getDateDiff(String, String, String)},
      * defaulting the difference calculation to days. It calculates the difference between two datetime
@@ -1100,7 +1100,7 @@ public final class Utils {
         return getDateDiff(datetime1, datetime2, "");
     }
     /**
-     * <h4>Calculates the difference between two dates or datetimes in the specified unit.</h4>
+     * <p>Calculates the difference between two dates or datetimes in the specified unit.</p>
      * <p>
      * This method calculates the difference between two datetime strings, returning the result
      * as an integer in the unit specified by {@code diffType}. The difference can be calculated
@@ -1158,7 +1158,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Returns the full name of the specified month based on a string representation of the month number.</h4>
+     * <p>Returns the full name of the specified month based on a string representation of the month number.</p>
      * <p>
      * This method simply calls {@link #getMonthName(int, boolean)} with {@code isFullName} set to {@code true}.
      * </p>
@@ -1171,8 +1171,8 @@ public final class Utils {
         return getMonthName(month, true);
     }
     /**
-     * <h4>Returns the name of the specified month based on a string representation of the month number,
-     * allowing for either the full name or abbreviated form.</h4>
+     * <p>Returns the name of the specified month based on a string representation of the month number,
+     * allowing for either the full name or abbreviated form.</p>
      * <p>
      * This method first validates that the input string represents a valid integer and then converts it
      * to an integer to retrieve the month name. It allows the name to be returned in either its full form
@@ -1194,7 +1194,7 @@ public final class Utils {
         return getMonthName(mon, isFullName);
     }
     /**
-     * <h4>Returns the full name of the specified month based on its numeric representation.</h4>
+     * <p>Returns the full name of the specified month based on its numeric representation.</p>
      * <p>
      * This method is a convenience overload of {@link #getMonthName(int, boolean)}, defaulting to
      * returning the full name of the month.
@@ -1207,7 +1207,7 @@ public final class Utils {
         return getMonthName(month, true);
     }
     /**
-     * <h4>Returns the name of the specified month.</h4>
+     * <p>Returns the name of the specified month.</p>
      * <p>
      * This method provides the name of the month corresponding to the given numeric value. The name can be
      * returned in either its full form (e.g., "January") or its abbreviated form (e.g., "Jan"), depending on
@@ -1242,7 +1242,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Formats a datetime string using the default date format.</h4>
+     * <p>Formats a datetime string using the default date format.</p>
      * <p>
      * This method is a convenience overload, formatting the given datetime string using the class's
      * default date format. It's useful for quickly formatting datetime strings without specifying a custom format.
@@ -1255,7 +1255,7 @@ public final class Utils {
         return getDateWithFormat(datetime, "");
     }
     /**
-     * <h4>Formats a datetime string using a specified format.</h4>
+     * <p>Formats a datetime string using a specified format.</p>
      * <p>
      * This method formats a given datetime string according to the specified format string. If the format
      * is not specified (empty string), the class's default date format is used. This method allows for
@@ -1270,7 +1270,7 @@ public final class Utils {
         return getDateWithFormat(getDatetime(datetime), format);
     }
     /**
-     * <h4>Formats a {@link LocalDateTime} object using the default date format.</h4>
+     * <p>Formats a {@link LocalDateTime} object using the default date format.</p>
      * <p>
      * This method is a convenience overload, formatting the given {@link LocalDateTime} object using the class's
      * default date format. It's useful for quickly formatting {@link LocalDateTime} objects without specifying a custom format.
@@ -1283,7 +1283,7 @@ public final class Utils {
         return getDateWithFormat(datetime, "");
     }
     /**
-     * <h4>Formats a {@link LocalDateTime} object using a specified format.</h4>
+     * <p>Formats a {@link LocalDateTime} object using a specified format.</p>
      * <p>
      * This method formats a given {@link LocalDateTime} object according to the specified format string.
      * If the format is not specified (empty string), the class's default date format is used. It throws
@@ -1309,7 +1309,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Returns the day of the week for a given date string using the default day type.</h4>
+     * <p>Returns the day of the week for a given date string using the default day type.</p>
      * <p>
      * This method is a convenience overload, providing the day of the week for a given date string.
      * The day of the week is calculated using the class's default day of week type.
@@ -1322,20 +1322,22 @@ public final class Utils {
         return getDayOfWeek(date, "");
     }
     /**
-     * <h4>Returns the day of the week for a given {@link LocalDate} using the default day type.</h4>
+     * <p>Returns the day of the week for a given {@link LocalDate} using the default day type.</p>
      * <p>
      * This method is a convenience overload, providing the day of the week for a given {@link LocalDate}.
      * The day of the week is calculated using the class's default day of week type.
      * </p>
      *
      * @param date The {@link LocalDate} for which the day of the week is to be calculated.
+     * @param dayOfWeekType The type of day of week representation ('d' for numeric, 'dy' for abbreviated name in US locale,
+     *                      'day' for full name in US locale, 'kdy' for abbreviated name in Korean locale, 'kday' for full name in Korean locale).
      * @return The day of the week represented as a string according to the default day type.
      */
     public static String getDayOfWeek(String date, String dayOfWeekType) {
         return getDayOfWeek(getDate(date), dayOfWeekType);
     }
     /**
-     * <h4>Returns the day of the week for a given date string according to a specified day of week type.</h4>
+     * <p>Returns the day of the week for a given date string according to a specified day of week type.</p>
      * <p>
      * This method formats the day of the week of a given date string according to the specified day of week type.
      * It supports various representations such as numeric day (e.g., 1 for Monday), abbreviated day names (e.g., "Mon"),
@@ -1343,15 +1345,13 @@ public final class Utils {
      * </p>
      *
      * @param date The date string for which the day of the week is to be calculated.
-     * @param dayOfWeekType The type of day of week representation ('d' for numeric, 'dy' for abbreviated name in US locale,
-     *                      'day' for full name in US locale, 'kdy' for abbreviated name in Korean locale, 'kday' for full name in Korean locale).
      * @return The day of the week represented according to the specified day type.
      */
     public static String getDayOfWeek(LocalDate date) {
         return getDayOfWeek(date, "");
     }
     /**
-     * <h4>Returns the day of the week for a given {@link LocalDate} according to a specified day of week type.</h4>
+     * <p>Returns the day of the week for a given {@link LocalDate} according to a specified day of week type.</p>
      * <p>
      * This method calculates the day of the week for a given {@link LocalDate} and formats it according to the
      * specified day of week type. It allows for flexible representation of the day of the week, supporting
@@ -1390,7 +1390,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Returns the last day of the month for a given {@link LocalDate}.</h4>
+     * <p>Returns the last day of the month for a given {@link LocalDate}.</p>
      * <p>
      * This method calculates the last day of the month for the specified date. It is useful for determining the end of the month,
      * which can be particularly helpful in date calculations involving billing cycles, scheduling, and period-end processing.
@@ -1407,7 +1407,7 @@ public final class Utils {
         return date.with(TemporalAdjusters.lastDayOfMonth()).getDayOfMonth();
     }
     /**
-     * <h4>Returns the last day of the month for a given year and month string.</h4>
+     * <p>Returns the last day of the month for a given year and month string.</p>
      * <p>
      * This method calculates the last day of the month for the specified year and month. The input string can be in various
      * formats, but it must represent a valid year and month. The method attempts to parse the string to a {@link LocalDate},
@@ -1444,7 +1444,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Returns the current system date and time in the default datetime format.</h4>
+     * <p>Returns the current system date and time in the default datetime format.</p>
      * <p>
      * This convenience method fetches the current system date and time, formatting it according to
      * the class's predefined default datetime format. It simplifies obtaining a formatted string
@@ -1458,7 +1458,7 @@ public final class Utils {
         return getSysDatetime("");
     }
     /**
-     * <h4>Returns the current system date and time in a specified format.</h4>
+     * <p>Returns the current system date and time in a specified format.</p>
      * <p>
      * This method fetches the current system date and time, formatting it according to the specified
      * format string. If no format is specified (i.e., an empty string is passed), it defaults to using
@@ -1482,7 +1482,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Returns the current system day of the week using the default day type.</h4>
+     * <p>Returns the current system day of the week using the default day type.</p>
      * <p>
      * This method fetches the current system day and formats it according to the class's default day type,
      * which could be a numeric representation, a short name, or a full name of the day of the week. It provides
@@ -1496,7 +1496,7 @@ public final class Utils {
         return getSysDayOfWeek("");
     }
     /**
-     * <h4>Returns the current system day of the week in a specified day type.</h4>
+     * <p>Returns the current system day of the week in a specified day type.</p>
      * <p>
      * This method fetches the current system day and formats it according to the specified day type parameter.
      * The day type can be specified to return the day in various forms, such as numeric ('d'), abbreviated ('dy' or 'kdy' for Korean),
@@ -1518,7 +1518,7 @@ public final class Utils {
      * for Number
      **********************************************************************/
     /**
-     * <h4>Calculates the ceiling of a numeric string to the nearest whole number.</h4>
+     * <p>Calculates the ceiling of a numeric string to the nearest whole number.</p>
      * <p>
      * This method attempts to convert the given string {@code num} representing a numeric value
      * to double and then rounds it up to the nearest whole number. It effectively delegates to
@@ -1539,7 +1539,7 @@ public final class Utils {
         return getCeil(num, 0);
     }
     /**
-     * <h4>Calculates the ceiling of a numeric string to a specified precision.</h4>
+     * <p>Calculates the ceiling of a numeric string to a specified precision.</p>
      * <p>
      * This method first verifies that the input string {@code num} is a valid representation of
      * a numeric value using the {@code isNumeric} method. It then parses the string to a double
@@ -1564,7 +1564,7 @@ public final class Utils {
         return getCeil(Double.parseDouble(num), precision);
     }
     /**
-     * <h4>Calculates the ceiling of an integer to the nearest whole number.</h4>
+     * <p>Calculates the ceiling of an integer to the nearest whole number.</p>
      * <p>
      * This method converts the given integer number {@code num} to double and applies the ceiling
      * operation to round it up to the nearest whole number. It effectively delegates to 
@@ -1585,7 +1585,7 @@ public final class Utils {
         return getCeil((double) num, 0);
     }
     /**
-     * <h4>Calculates the ceiling of an integer to a specified precision.</h4>
+     * <p>Calculates the ceiling of an integer to a specified precision.</p>
      * <p>
      * This method converts the given integer number {@code num} to double and rounds it up to the
      * nearest value based on the specified precision {@code precision}. By calling 
@@ -1607,7 +1607,7 @@ public final class Utils {
         return getCeil((double) num, precision);
     }
     /**
-     * <h4>Calculates the ceiling of a long number to the nearest whole number.</h4>
+     * <p>Calculates the ceiling of a long number to the nearest whole number.</p>
      * <p>
      * This method converts the given long number {@code num} to double and rounds it up
      * to the nearest whole number by invoking {@code getCeil((double) num, 0)}.
@@ -1628,7 +1628,7 @@ public final class Utils {
         return getCeil((double) num, 0);
     }
     /**
-     * <h4>Calculates the ceiling of a long number to a specified precision.</h4>
+     * <p>Calculates the ceiling of a long number to a specified precision.</p>
      * <p>
      * Although the input is a long integer and inherently lacks a fractional component, this method
      * provides a unified interface for ceiling operations across numeric types. It converts the given 
@@ -1652,7 +1652,7 @@ public final class Utils {
         return getCeil((double) num, precision);
     }
     /**
-     * <h4>Calculates the ceiling of a float number to the nearest whole number.</h4>
+     * <p>Calculates the ceiling of a float number to the nearest whole number.</p>
      * <p>
      * This method converts the given float number {@code num} to double and rounds it up
      * to the nearest whole number by calling {@code getCeil((double) num, 0)}.
@@ -1671,7 +1671,7 @@ public final class Utils {
         return getCeil((double) num, 0);
     }
     /**
-     * <h4>Calculates the ceiling of a float number to a specified precision.</h4>
+     * <p>Calculates the ceiling of a float number to a specified precision.</p>
      * <p>
      * This method converts the given float number {@code num} to double and rounds it up
      * to the nearest value based on the specified precision {@code precision} by calling
@@ -1692,7 +1692,7 @@ public final class Utils {
         return getCeil((double) num, precision);
     }
     /**
-     * <h4>Calculates the ceiling of a number to the nearest whole number.</h4>
+     * <p>Calculates the ceiling of a number to the nearest whole number.</p>
      * <p>
      * This method rounds up the given number {@code num} to the nearest whole number by calling
      * {@code getCeil(num, 0)}. It effectively disregards any fractional part of the number,
@@ -1710,7 +1710,7 @@ public final class Utils {
         return getCeil(num, 0);
     }
     /**
-     * <h4>Calculates the ceiling of a number to a specified precision.</h4>
+     * <p>Calculates the ceiling of a number to a specified precision.</p>
      * <p>
      * This method rounds up the given number {@code num} to the nearest value based on the specified
      * precision {@code precision}. Precision refers to the number of digits to the right of the decimal
@@ -1735,7 +1735,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Calculates the floor of a numeric string to the nearest whole number.</h4>
+     * <p>Calculates the floor of a numeric string to the nearest whole number.</p>
      * <p>
      * This method rounds down the numeric value represented by the string {@code num} to the nearest whole number.
      * It acts as a convenience wrapper by converting the string to a double and calling {@code getFloor(Double.parseDouble(num), 0)}.
@@ -1754,7 +1754,7 @@ public final class Utils {
         return getFloor(num, 0);
     }
     /**
-     * <h4>Calculates the floor of a numeric string to a specified precision.</h4>
+     * <p>Calculates the floor of a numeric string to a specified precision.</p>
      * <p>
      * This method rounds down the numeric value represented by the string {@code num} based on the specified
      * precision {@code precision}. The string is first validated to ensure it represents a valid numeric value
@@ -1778,7 +1778,7 @@ public final class Utils {
         return getFloor(Double.parseDouble(num), precision);
     }
     /**
-     * <h4>Calculates the floor of an integer number to the nearest whole number.</h4>
+     * <p>Calculates the floor of an integer number to the nearest whole number.</p>
      * <p>
      * This method rounds down the given integer number {@code num} to the nearest whole number by converting
      * it to double and calling {@code getFloor((double) num, 0)}. Since {@code num} is already an integer, this
@@ -1796,7 +1796,7 @@ public final class Utils {
         return getFloor((double) num, 0);
     }
     /**
-     * <h4>Calculates the floor of an integer number to a specified precision.</h4>
+     * <p>Calculates the floor of an integer number to a specified precision.</p>
      * <p>
      * This method rounds down the given integer number {@code num} to the nearest value based on the specified
      * precision {@code precision}. While the input is an integer and typically does not involve decimal points, 
@@ -1816,7 +1816,7 @@ public final class Utils {
         return getFloor((double) num, precision);
     }
     /**
-     * <h4>Calculates the floor of a long number to the nearest whole number.</h4>
+     * <p>Calculates the floor of a long number to the nearest whole number.</p>
      * <p>
      * This method rounds down the given long number {@code num} to the nearest whole number by converting
      * it to double and calling {@code getFloor((double) num, 0)}. It ensures that the result is the largest 
@@ -1836,7 +1836,7 @@ public final class Utils {
         return getFloor((double) num, 0);
     }
     /**
-     * <h4>Calculates the floor of a long number to a specified precision.</h4>
+     * <p>Calculates the floor of a long number to a specified precision.</p>
      * <p>
      * Despite the fact that long integers do not have fractional parts, this method allows for the conceptual 
      * application of precision to a long number {@code num} by converting it to double and rounding it down 
@@ -1860,7 +1860,7 @@ public final class Utils {
         return getFloor((double) num, precision);
     }
     /**
-     * <h4>Calculates the floor of a float number to the nearest whole number.</h4>
+     * <p>Calculates the floor of a float number to the nearest whole number.</p>
      * <p>
      * This method rounds down the given float number {@code num} to the nearest whole number by converting
      * it to double and calling {@code getFloor((double) num, 0)}. It effectively disregards any fractional 
@@ -1877,7 +1877,7 @@ public final class Utils {
         return getFloor((double) num, 0);
     }
     /**
-     * <h4>Calculates the floor of a float number to a specified precision.</h4>
+     * <p>Calculates the floor of a float number to a specified precision.</p>
      * <p>
      * This method rounds down the given float number {@code num} to the nearest value based on the specified 
      * precision {@code precision}. The number is converted to double for precise calculations. Precision refers 
@@ -1899,7 +1899,7 @@ public final class Utils {
         return getFloor((double) num, precision);
     }
     /**
-     * <h4>Calculates the floor of a number to the nearest whole number.</h4>
+     * <p>Calculates the floor of a number to the nearest whole number.</p>
      * <p>
      * This method rounds down the given number {@code num} to the nearest whole number by calling
      * {@code getFloor(num, 0)}. It effectively disregards any fractional part of the number,
@@ -1917,7 +1917,7 @@ public final class Utils {
         return getFloor(num, 0);
     }
     /**
-     * <h4>Calculates the floor of a number to a specified precision.</h4>
+     * <p>Calculates the floor of a number to a specified precision.</p>
      * <p>
      * This method rounds down the given number {@code num} to the nearest value based on the specified
      * precision {@code precision}. Precision refers to the number of digits to the right of the decimal
@@ -1943,7 +1943,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Calculates the rounding of a numeric string to the nearest whole number.</h4>
+     * <p>Calculates the rounding of a numeric string to the nearest whole number.</p>
      * <p>
      * This method rounds the numeric value represented by the string {@code num} to the nearest whole number.
      * It is a convenience method that parses the string as a double and delegates to {@code getRound(double num, int precision)}
@@ -1962,7 +1962,7 @@ public final class Utils {
         return getRound(num, 0);
     }
     /**
-     * <h4>Calculates the rounding of a numeric string to a specified precision.</h4>
+     * <p>Calculates the rounding of a numeric string to a specified precision.</p>
      * <p>
      * This method rounds the numeric value represented by the string {@code num} based on the specified
      * precision {@code precision}. The string is parsed to a double, and rounding is performed to the nearest
@@ -1985,7 +1985,7 @@ public final class Utils {
         return getRound(Double.parseDouble(num), precision);
     }
     /**
-     * <h4>Calculates the rounding of an integer number to the nearest whole number.</h4>
+     * <p>Calculates the rounding of an integer number to the nearest whole number.</p>
      * <p>
      * Rounds the given integer {@code num} to the nearest whole number. This method is effectively redundant for
      * integer inputs but is provided for consistency in method signatures and to facilitate rounding when the same
@@ -1999,7 +1999,7 @@ public final class Utils {
         return getRound((double) num, 0);
     }
     /**
-     * <h4>Calculates the rounding of an integer number to a specified precision.</h4>
+     * <p>Calculates the rounding of an integer number to a specified precision.</p>
      * <p>
      * This method rounds the given integer number {@code num} to a precision specified by {@code precision}. While
      * integers inherently lack decimal places, this method facilitates operations requiring the adjustment of scale
@@ -2014,7 +2014,7 @@ public final class Utils {
         return getRound((double) num, precision);
     }
     /**
-     * <h4>Calculates the rounding of a long number to the nearest whole number.</h4>
+     * <p>Calculates the rounding of a long number to the nearest whole number.</p>
      * <p>
      * This method rounds the given long number {@code num} to the nearest whole number by converting
      * it to double and calling {@code getRound((double) num, 0)}. It is useful for rounding long numbers
@@ -2028,7 +2028,7 @@ public final class Utils {
         return getRound((double) num, 0);
     }
     /**
-     * <h4>Calculates the rounding of a long number to a specified precision.</h4>
+     * <p>Calculates the rounding of a long number to a specified precision.</p>
      * <p>
      * This method rounds the given long number {@code num} to the nearest value based on the specified
      * precision {@code precision} by converting it to double. This allows for precise control over rounding
@@ -2043,7 +2043,7 @@ public final class Utils {
         return getRound((double) num, precision);
     }
     /**
-     * <h4>Calculates the rounding of a float number to the nearest whole number.</h4>
+     * <p>Calculates the rounding of a float number to the nearest whole number.</p>
      * <p>
      * This method rounds the given float number {@code num} to the nearest whole number by converting
      * it to double and calling {@code getRound((double) num, 0)}. It ensures accuracy in rounding float
@@ -2057,7 +2057,7 @@ public final class Utils {
         return getRound((double) num, 0);
     }
     /**
-     * <h4>Calculates the rounding of a float number to a specified precision.</h4>
+     * <p>Calculates the rounding of a float number to a specified precision.</p>
      * <p>
      * This method rounds the given float number {@code num} to the nearest value based on the specified
      * precision {@code precision} by converting it to double. This is particularly useful for achieving
@@ -2072,7 +2072,7 @@ public final class Utils {
         return getRound((double) num, precision);
     }
     /**
-     * <h4>Calculates the rounding of a number to the nearest whole number.</h4>
+     * <p>Calculates the rounding of a number to the nearest whole number.</p>
      * <p>
      * This method rounds the given number {@code num} to the nearest whole number by calling
      * {@code getRound(num, 0)}. It effectively rounds the number to the closest integer, handling
@@ -2090,7 +2090,7 @@ public final class Utils {
         return getRound(num, 0);
     }
     /**
-     * <h4>Calculates the rounding of a number to a specified precision.</h4>
+     * <p>Calculates the rounding of a number to a specified precision.</p>
      * <p>
      * This method rounds the given number {@code num} to the nearest value based on the specified
      * precision {@code precision}. Precision refers to the number of digits to the right of the decimal
@@ -2115,7 +2115,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Truncates a numeric string to the nearest whole number.</h4>
+     * <p>Truncates a numeric string to the nearest whole number.</p>
      * <p>
      * This method parses the numeric string {@code num} and truncates it to the nearest whole number.
      * It is a convenience wrapper that converts the string to a double and calls
@@ -2135,7 +2135,7 @@ public final class Utils {
         return getTrunc(num, 0);
     }
     /**
-     * <h4>Truncates a numeric string to a specified precision.</h4>
+     * <p>Truncates a numeric string to a specified precision.</p>
      * <p>
      * This method truncates the numeric value represented by the string {@code num} based on the specified
      * precision {@code precision}. After validating and parsing {@code num} as a double, the method truncates
@@ -2159,7 +2159,7 @@ public final class Utils {
         return getTrunc(Double.parseDouble(num), precision);
     }
     /**
-     * <h4>Truncates an integer number to the nearest whole number.</h4>
+     * <p>Truncates an integer number to the nearest whole number.</p>
      * <p>
      * Rounds down the given integer {@code num} to the nearest whole number. This operation effectively
      * returns {@code num} as it is, but converts it to a double for consistency with other numeric types.
@@ -2173,7 +2173,7 @@ public final class Utils {
         return getTrunc((double) num, 0);
     }
     /**
-     * <h4>Truncates an integer number to a specified precision.</h4>
+     * <p>Truncates an integer number to a specified precision.</p>
      * <p>
      * This method applies the concept of truncation to an integer {@code num} by converting it to double
      * and truncating it to a specified precision. Although integers do not have decimal parts, this method
@@ -2188,7 +2188,7 @@ public final class Utils {
         return getTrunc((double) num, precision);
     }
     /**
-     * <h4>Truncates a long number to the nearest whole number.</h4>
+     * <p>Truncates a long number to the nearest whole number.</p>
      * <p>
      * Truncates the given long number {@code num} by converting it to double and calling
      * {@code getTrunc((double) num, 0)}. Since {@code num} is already a whole number, this method
@@ -2202,7 +2202,7 @@ public final class Utils {
         return getTrunc((double) num, 0);
     }
     /**
-     * <h4>Truncates a long number to a specified precision.</h4>
+     * <p>Truncates a long number to a specified precision.</p>
      * <p>
      * Although truncating a long number to a specified precision might not seem applicable due to the
      * absence of fractional parts in long values, this method allows for conceptual truncation by converting
@@ -2218,7 +2218,7 @@ public final class Utils {
         return getTrunc((double) num, precision);
     }
     /**
-     * <h4>Truncates a float number to the nearest whole number.</h4>
+     * <p>Truncates a float number to the nearest whole number.</p>
      * <p>
      * This method truncates the given float number {@code num} to the nearest whole number by converting
      * it to double and calling {@code getTrunc((double) num, 0)}. It removes the fractional part of the
@@ -2232,7 +2232,7 @@ public final class Utils {
         return getTrunc((double) num, 0);
     }
     /**
-     * <h4>Truncates a float number to a specified precision.</h4>
+     * <p>Truncates a float number to a specified precision.</p>
      * <p>
      * This method truncates the given float number {@code num} to the nearest value based on the specified
      * precision {@code precision} by converting it to double. This allows for precise control over the truncation
@@ -2247,7 +2247,7 @@ public final class Utils {
         return getTrunc((double) num, precision);
     }
     /**
-     * <h4>Truncates a number to the nearest whole number.</h4>
+     * <p>Truncates a number to the nearest whole number.</p>
      * <p>
      * This method truncates the given number {@code num} to the nearest whole number by discarding any
      * fractional part. It calls {@code getTrunc(num, 0)}, effectively simplifying the operation to remove
@@ -2265,7 +2265,7 @@ public final class Utils {
         return getTrunc(num, 0);
     }
     /**
-     * <h4>Truncates a number to a specified precision.</h4>
+     * <p>Truncates a number to a specified precision.</p>
      * <p>
      * This method truncates the given number {@code num} to the nearest value based on the specified
      * precision {@code precision}. Precision refers to the number of digits to the right of the decimal
@@ -2292,7 +2292,7 @@ public final class Utils {
      * for String
      **********************************************************************/
     /**
-     * <h4>Calculates the byte length of a given string based on UTF-8 encoding.</h4>
+     * <p>Calculates the byte length of a given string based on UTF-8 encoding.</p>
      * <p>
      * This method determines the byte length of the specified string when encoded in UTF-8. Different characters
      * consume a varying number of bytes depending on their code point value. ASCII characters (code points up to 0x7F)
@@ -2327,7 +2327,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Truncates a string to ensure its byte length does not exceed a specified limit when encoded in UTF-8.</h4>
+     * <p>Truncates a string to ensure its byte length does not exceed a specified limit when encoded in UTF-8.</p>
      * <p>
      * This method calculates the byte length of a string as it would be encoded in UTF-8 and truncates it
      * to ensure that its size does not exceed a specified byte length ({@code cutByte}). The method accounts
@@ -2375,7 +2375,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Equalizes the spacing within a string to meet a specified total length.</h4>
+     * <p>Equalizes the spacing within a string to meet a specified total length.</p>
      * <p>
      * This method adjusts the spacing within a given string to ensure its total length matches a specified value.
      * If the original string's length is already greater than or equal to the specified length, the string is returned
@@ -2420,7 +2420,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Prepends padding to a string to reach a specified total length.</h4>
+     * <p>Prepends padding to a string to reach a specified total length.</p>
      * <p>
      * This method prepends the specified pad string to the beginning of the given string until the total length
      * of the resulting string matches the specified length. If the original string is {@code null}, it is treated
@@ -2458,7 +2458,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Appends padding to the right of a string to achieve a specified total length.</h4>
+     * <p>Appends padding to the right of a string to achieve a specified total length.</p>
      * <p>
      * This method appends the specified pad string to the end of the given string until the total length
      * of the resulting string reaches the specified length. If the original string is {@code null}, it is
@@ -2497,7 +2497,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Returns the default value if the provided value is {@code null}.</h4>
+     * <p>Returns the default value if the provided value is {@code null}.</p>
      * <p>
      * This method checks if the given value is {@code null} and returns a specified default value in that case. 
      * If the provided value is not {@code null}, it returns the value itself. This utility is particularly useful 
@@ -2520,7 +2520,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Formats an integer value as a string using a default format pattern.</h4>
+     * <p>Formats an integer value as a string using a default format pattern.</p>
      * <p>
      * This method is a simplified version of {@code getNumberFormat(String value, String format)} that takes an integer value.
      * It converts the integer value to a string and formats it using the default format pattern defined in {@code NUMBER_FORMATTER}.
@@ -2533,7 +2533,7 @@ public final class Utils {
         return getNumberFormat(String.valueOf(value), "");
     }
     /**
-     * <h4>Formats an integer value as a string based on the specified format pattern.</h4>
+     * <p>Formats an integer value as a string based on the specified format pattern.</p>
      * <p>
      * This method is an overload of {@code getNumberFormat(String value, String format)} that accepts an integer value and a format pattern.
      * It converts the integer value to a string and formats it according to the specified format pattern.
@@ -2547,7 +2547,7 @@ public final class Utils {
         return getNumberFormat(String.valueOf(value), format);
     }
     /**
-     * <h4>Formats a long integer value as a string using a default format pattern.</h4>
+     * <p>Formats a long integer value as a string using a default format pattern.</p>
      * <p>
      * This method converts a long integer value to a string and formats it using the default format pattern specified by {@code NUMBER_FORMATTER}.
      * It is a convenient way to format long integer values without specifying a custom format pattern, leveraging the default formatting settings.
@@ -2560,7 +2560,7 @@ public final class Utils {
         return getNumberFormat(String.valueOf(value), "");
     }
     /**
-     * <h4>Formats a long integer value as a string based on the specified format pattern.</h4>
+     * <p>Formats a long integer value as a string based on the specified format pattern.</p>
      * <p>
      * This method provides a way to format a long integer value according to a specified format pattern. It converts the long integer value to a string 
      * and then applies the given format, allowing for customized formatting of long integer numbers. This is particularly useful when specific formatting
@@ -2575,7 +2575,7 @@ public final class Utils {
         return getNumberFormat(String.valueOf(value), format);
     }
     /**
-     * <h4>Formats a float value as a string using a default format pattern.</h4>
+     * <p>Formats a float value as a string using a default format pattern.</p>
      * <p>
      * This method converts a float value to a string and formats it using the default format pattern specified by {@code NUMBER_FORMATTER}.
      * It provides a straightforward approach to format float values for display without requiring a custom format pattern, using predefined formatting settings.
@@ -2588,7 +2588,7 @@ public final class Utils {
         return getNumberFormat(String.valueOf(value), "");
     }
     /**
-     * <h4>Formats a float value as a string based on the specified format pattern.</h4>
+     * <p>Formats a float value as a string based on the specified format pattern.</p>
      * <p>
      * This method enables formatting of a float value according to a specified format pattern. By converting the float value to a string and applying the given format, 
      * it allows for custom formatting of float numbers. This flexibility is useful for applications requiring specific number formats, such as scientific notation, fixed decimal places, 
@@ -2603,7 +2603,7 @@ public final class Utils {
         return getNumberFormat(String.valueOf(value), format);
     }
     /**
-     * <h4>Formats a double value as a string using a default format pattern.</h4>
+     * <p>Formats a double value as a string using a default format pattern.</p>
      * <p>
      * Converts a double precision floating-point number to a string and formats it using the default format pattern specified by {@code NUMBER_FORMATTER}.
      * This method simplifies the formatting of double values for textual display, adhering to predefined formatting standards without requiring a custom format pattern.
@@ -2616,7 +2616,7 @@ public final class Utils {
         return getNumberFormat(String.valueOf(value), "");
     }
     /**
-     * <h4>Formats a double value as a string based on the specified format pattern.</h4>
+     * <p>Formats a double value as a string based on the specified format pattern.</p>
      * <p>
      * Allows for the custom formatting of a double precision floating-point number according to a specified format pattern. By converting the double value to a string 
      * and then applying the given format, it offers tailored formatting solutions for double numbers, accommodating needs for specific numerical representations such as 
@@ -2631,7 +2631,7 @@ public final class Utils {
         return getNumberFormat(String.valueOf(value), format);
     }
     /**
-     * <h4>Formats a string representing a numeric value using a default format pattern.</h4>
+     * <p>Formats a string representing a numeric value using a default format pattern.</p>
      * <p>
      * This method formats a string that represents a numeric value by using the default format pattern specified by {@code NUMBER_FORMATTER}.
      * It is designed to format numeric strings without the need for specifying a custom format pattern, relying on predefined formatting settings
@@ -2649,7 +2649,7 @@ public final class Utils {
         return getNumberFormat(value, "");
     }
     /**
-     * <h4>Formats a numeric value as a string based on the specified format pattern.</h4>
+     * <p>Formats a numeric value as a string based on the specified format pattern.</p>
      * <p>
      * This method converts a string representation of a number into a formatted string according to the given format pattern. 
      * The format pattern can include prefixes, numeric patterns, and suffixes. If the format pattern is invalid or not provided, 
@@ -2746,7 +2746,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Removes all characters from a string except digits.</h4>
+     * <p>Removes all characters from a string except digits.</p>
      * <p>
      * This method processes a given string and removes all characters that are not numeric digits (0-9).
      * It is useful for extracting purely numeric data from strings that may contain a mix of letters, 
@@ -2767,7 +2767,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Removes all numeric digits from a string.</h4>
+     * <p>Removes all numeric digits from a string.</p>
      * <p>
      * This method processes a given string and removes all numeric digits (0-9), leaving behind a string consisting only of non-numeric characters.
      * It is particularly useful for scenarios where numeric information needs to be stripped from text data, such as when cleaning up or formatting strings
@@ -2787,7 +2787,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Returns the reversed version of the input string.</h4>
+     * <p>Returns the reversed version of the input string.</p>
      * <p>
      * This method takes a given string and returns a new string that is the reverse of the input. 
      * It is useful for various text processing tasks where the order of characters in a string needs to be inverted,
@@ -2810,7 +2810,7 @@ public final class Utils {
      * etc
      **********************************************************************/
     /**
-     * <h4>Returns the client's IP address from an HttpServletRequest.</h4>
+     * <p>Returns the client's IP address from an HttpServletRequest.</p>
      * <p>
      * This method extracts the client's IP address from a given HttpServletRequest object. It checks several HTTP headers that may contain
      * the client's IP address, considering scenarios where the client is connecting through a proxy or a load balancer. The method searches
@@ -2856,7 +2856,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Extracts the file extension from a URL or file name.</h4>
+     * <p>Extracts the file extension from a URL or file name.</p>
      * <p>
      * This method parses a given string representing a file path or URL and extracts the file extension, if present. 
      * It identifies the file extension as the part of the string that follows the last period ('.') character. This utility 
@@ -2883,7 +2883,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Extracts the file name without its extension from a URL or file path.</h4>
+     * <p>Extracts the file name without its extension from a URL or file path.</p>
      * <p>
      * This method parses a given string representing a file path or URL and extracts the file name, excluding the extension if present. 
      * The method first isolates the portion of the string following the last slash ('/') character, which is considered the file name with 
@@ -2927,7 +2927,7 @@ public final class Utils {
         return prop;
     }
     /**
-     * <h4>Retrieves a property value from a specified property file.</h4>
+     * <p>Retrieves a property value from a specified property file.</p>
      * <p>
      * This method looks up and returns the value associated with a given key in a specified properties file. 
      * It leverages the {@code loadProperties} method to load the properties file based on the provided file name. 
@@ -2945,7 +2945,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Returns the value associated with a specific key in a properties file as a Map.</h4>
+     * <p>Returns the value associated with a specific key in a properties file as a Map.</p>
      * <p>
      * This method fetches the value for a specified key from a given properties file and returns it within a {@link Map}.
      * If the key exists in the properties file, the key-value pair is added to the map; otherwise, an empty map is returned.
@@ -2973,7 +2973,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Returns all keys from a properties file as a Set.</h4>
+     * <p>Returns all keys from a properties file as a Set.</p>
      * <p>
      * This method loads a properties file specified by the file name and returns a {@link Set} containing all keys found within the file.
      * It provides a convenient way to access all the keys in a properties file, which can be useful for iterating over configurations,
@@ -2993,7 +2993,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Returns all key-value pairs from a properties file as a Map.</h4>
+     * <p>Returns all key-value pairs from a properties file as a Map.</p>
      * <p>
      * This method loads a properties file specified by the file name and constructs a {@link Map} containing all key-value pairs found within the file.
      * It facilitates accessing the entire set of configurations defined in a properties file, enabling the application to dynamically read and utilize
@@ -3018,7 +3018,7 @@ public final class Utils {
     }
 
     /**
-     * <h4>Returns a Map of properties matching a specific key prefix from a properties file.</h4>
+     * <p>Returns a Map of properties matching a specific key prefix from a properties file.</p>
      * <p>
      * This method loads a properties file specified by the file name and filters the properties based on a key prefix. 
      * It constructs a {@link Map} containing all key-value pairs where the key starts with the specified prefix, 
