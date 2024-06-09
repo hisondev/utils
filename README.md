@@ -1,4 +1,4 @@
-# utils
+# utils [![Maven Central](https://img.shields.io/maven-central/v/io.github.hisondev/utils.svg?label=Maven%20Central)](https://mvnrepository.com/artifact/io.github.hisondev/utils)
 This is a minimal collection of utils that can be used in a Java project.
 
 ## Introduction
