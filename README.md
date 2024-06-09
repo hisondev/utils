@@ -44,6 +44,9 @@ The `utils` library allows you to configure certain properties using a propertie
    greater.0xffff.byte=4
    number.formatter=#,##0.##### 
    propertie.file.path=./config/
+   ```
+
+**This is because the logic for retrieving information about Utils properties is as follows.
 
 ```java
 private static String DATE_FORMATTER = "yyyy-MM-dd";
