@@ -7,6 +7,8 @@ The `utils` library is a set of utility functions designed to simplify common ta
 ## Getting Started
 To start using the `utils` library in your project, follow the installation and usage instructions below.
 
+This library, composed of JavaScript, can use `hison.min.js` from [hison-js](https://github.com/hisondev/hison-js).
+
 ### Prerequisites
 Before you can use the `utils` library, you need to have the following software installed on your system:
 - Java Development Kit (JDK) 8 or higher
