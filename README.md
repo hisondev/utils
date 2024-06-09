@@ -21,6 +21,7 @@ You can add the `utils` library to your project by including the following depen
     <artifactId>utils</artifactId>
     <version>1.0.0</version>
 </dependency>
+```
 
 ## Usage
 ### Ex String Utilities
@@ -35,7 +36,7 @@ boolean isAlphaNumber = Utils.isAlphaNumber("Hello123");
 // Left pad a string with a specified character
 String paddedString = Utils.getLpad("123", "0", 5);
 
-### Ex Date Utilities
+### Ex) Date Utilities
 import io.github.hison.utils.Utils;
 
 // Get the current system date and time
