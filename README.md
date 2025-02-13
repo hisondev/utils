@@ -21,7 +21,7 @@ You can add the `utils` library to your project by including the following depen
 <dependency>
     <groupId>io.github.hison</groupId>
     <artifactId>utils</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
@@ -36,16 +36,17 @@ The `utils` library allows you to configure certain properties using a propertie
    Define the properties you want to customize in the `hison-utils-config.properties` file. Here are some example properties you can set:
 
    ```properties
-   date.formatter=dd/MM/yyyy
-   datetime.formatter=dd/MM/yyyy HH:mm:ss
-   add.type=d
-   diff.type=d
-   dayofweek.type=day
-   lessoreq.0x7ff.byte=2
-   lessoreq.0xffff.byte=3
-   greater.0xffff.byte=4
-   number.formatter=#,##0.##### 
-   propertie.file.path=./config/
+   # application.properties
+   hison.utils.format.date=dd/MM/yyyy
+   hison.utils.format.datetime=dd/MM/yyyy HH:mm:ss
+   hison.utils.type.date-add=d
+   hison.utils.type.date-diff=d
+   hison.utils.type.dayofweek=day
+   hison.utils.charbyte.less2047=2
+   hison.utils.charbyte.less65535=3
+   hison.utils.charbyte.greater65535=4
+   hison.utils.format.number=#,##0.##### 
+   hison.utils.propertie.file.path=./config/
    ```
 
 ***This is because the logic for retrieving information about Utils properties is as follows.***

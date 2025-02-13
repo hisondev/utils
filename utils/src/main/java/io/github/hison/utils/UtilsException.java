@@ -8,7 +8,7 @@ package io.github.hison.utils;
  * of what went wrong during data operations.</p>
  *
  * @author Hani son
- * @version 1.0.0
+ * @version 1.0.1
  */
 public class UtilsException extends RuntimeException {
     /**

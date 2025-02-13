@@ -59,7 +59,7 @@ import javax.servlet.http.HttpServletRequest;
  * tasks and enabling easy access to application configurations.</p>
  * 
  * @author Hani son
- * @version 1.0.0
+ * @version 1.0.1
  */
 public final class Utils {
     private Utils() {
@@ -79,24 +79,26 @@ public final class Utils {
 
     static {
         Properties prop = new Properties();
-        try (InputStream input = Utils.class.getClassLoader().getResourceAsStream("hison-utils-config.properties")) {
+        try (InputStream input = Utils.class.getClassLoader().getResourceAsStream("application.properties")) {
             if (input != null) {
                 prop.load(input);
+            } else {
+                System.err.println("application.properties not found.");
             }
         } catch (IOException ex) {
+            System.err.println("Failed to load application.properties: " + ex.getMessage());
         }
-        if(!prop.isEmpty()){
-            DATE_FORMATTER = prop.getProperty("date.formatter") != null ? prop.getProperty("date.formatter") : DATE_FORMATTER;
-            DATETIME_FORMATTER = prop.getProperty("datetime.formatter") != null ? prop.getProperty("datetime.formatter") : DATETIME_FORMATTER;
-            ADD_TYPE = prop.getProperty("add.type") != null ? prop.getProperty("add.type") : ADD_TYPE;
-            DIFF_TYPE = prop.getProperty("diff.type") != null ? prop.getProperty("diff.type") : DIFF_TYPE;
-            DAY_OF_WEEK_TYPE = prop.getProperty("dayofweek.type") != null ? prop.getProperty("dayofweek.type") : DAY_OF_WEEK_TYPE;
-            LESSOREQ_0X7FF_BYTE = prop.getProperty("lessoreq.0x7ff.byte") != null && prop.getProperty("lessoreq.0x7ff.byte").matches("\\d+") ? Integer.parseInt(prop.getProperty("lessoreq.0x7ff.byte")) : LESSOREQ_0X7FF_BYTE;
-            LESSOREQ_0XFFFF_BYTE = prop.getProperty("lessoreq.0xffff.byte") != null && prop.getProperty("lessoreq.0xffff.byte").matches("\\d+") ? Integer.parseInt(prop.getProperty("lessoreq.0xffff.byte")) : LESSOREQ_0XFFFF_BYTE;
-            GREATER_0XFFFF_BYTE = prop.getProperty("greater.0xffff.byte") != null && prop.getProperty("greater.0xffff.byte").matches("\\d+") ? Integer.parseInt(prop.getProperty("greater.0xffff.byte")) : GREATER_0XFFFF_BYTE;
-            NUMBER_FORMATTER = prop.getProperty("number.formatter") != null ? prop.getProperty("number.formatter") : NUMBER_FORMATTER;
-            PROPERTIE_FILE_PATH = prop.getProperty("propertie.file.path") != null ? prop.getProperty("propertie.file.path") : PROPERTIE_FILE_PATH;
-        }
+    
+        DATE_FORMATTER = prop.getProperty("hison.utils.format.date", DATE_FORMATTER);
+        DATETIME_FORMATTER = prop.getProperty("hison.utils.format.datetime", DATETIME_FORMATTER);
+        ADD_TYPE = prop.getProperty("hison.utils.type.date-add", ADD_TYPE);
+        DIFF_TYPE = prop.getProperty("hison.utils.type.date-diff", DIFF_TYPE);
+        DAY_OF_WEEK_TYPE = prop.getProperty("hison.utils.type.dayofweek", DAY_OF_WEEK_TYPE);
+        LESSOREQ_0X7FF_BYTE = Integer.parseInt(prop.getProperty("hison.utils.charbyte.less2047", String.valueOf(LESSOREQ_0X7FF_BYTE)));
+        LESSOREQ_0XFFFF_BYTE = Integer.parseInt(prop.getProperty("hison.utils.charbyte.less65535", String.valueOf(LESSOREQ_0XFFFF_BYTE)));
+        GREATER_0XFFFF_BYTE = Integer.parseInt(prop.getProperty("hison.utils.charbyte.greater65535", String.valueOf(GREATER_0XFFFF_BYTE)));
+        NUMBER_FORMATTER = prop.getProperty("hison.utils.format.number", NUMBER_FORMATTER);
+        PROPERTIE_FILE_PATH = prop.getProperty("hison.utils.propertie.file.path", PROPERTIE_FILE_PATH);
     }
 
     /**********************************************************************
