@@ -1,0 +1,54 @@
+{
+    "properties": [
+        {
+            "name": "hison.utils.format.date",
+            "type": "java.lang.String",
+            "description": "A description for 'hison.utils.format.date'"
+        },
+        {
+            "name": "hison.utils.format.datetime",
+            "type": "java.lang.String",
+            "description": "A description for 'hison.utils.format.datetime'"
+        },
+        {
+            "name": "hison.utils.type.date-add",
+            "type": "java.lang.String",
+            "description": "A description for 'hison.utils.type.date-add'"
+        },
+        {
+            "name": "hison.utils.type.date-diff",
+            "type": "java.lang.String",
+            "description": "A description for 'hison.utils.type.date-diff'"
+        },
+        {
+            "name": "hison.utils.type.dayofweek",
+            "type": "java.lang.String",
+            "description": "A description for 'hison.utils.type.dayofweek'"
+        },
+        {
+            "name": "hison.utils.charbyte.less2047",
+            "type": "java.lang.String",
+            "description": "A description for 'hison.utils.charbyte.less2047'"
+        },
+        {
+            "name": "hison.utils.charbyte.less65535",
+            "type": "java.lang.String",
+            "description": "A description for 'hison.utils.charbyte.less65535'"
+        },
+        {
+            "name": "hison.utils.charbyte.greater65535",
+            "type": "java.lang.String",
+            "description": "A description for 'hison.utils.charbyte.greater65535'"
+        },
+        {
+            "name": "hison.utils.format.number",
+            "type": "java.lang.String",
+            "description": "A description for 'hison.utils.format.number'"
+        },
+        {
+            "name": "hison.utils.propertie.file.path",
+            "type": "java.lang.String",
+            "description": "A description for 'hison.utils.propertie.file.path'"
+        }
+    ]
+}
