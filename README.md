@@ -21,7 +21,7 @@ You can add the `utils` library to your project by including the following depen
 <dependency>
     <groupId>io.github.hison</groupId>
     <artifactId>utils</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 </dependency>
 ```
 

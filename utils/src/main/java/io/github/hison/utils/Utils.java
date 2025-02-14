@@ -59,7 +59,7 @@ import javax.servlet.http.HttpServletRequest;
  * tasks and enabling easy access to application configurations.</p>
  * 
  * @author Hani son
- * @version 1.0.1
+ * @version 1.0.2
  */
 public final class Utils {
     private Utils() {

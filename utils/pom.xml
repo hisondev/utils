@@ -6,7 +6,7 @@
 
   <groupId>io.github.hisondev</groupId>
   <artifactId>utils</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
 
   <name>Utils</name>
   <description>This is a minimal collection of utils that can be used in a Java project.</description>
