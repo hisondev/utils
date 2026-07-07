@@ -1,18 +1,19 @@
 package io.github.hison.utils;
 /**
- * The {@code UtilsException} class represents exceptions specific to data processing
- * within the application. It is a custom exception that extends {@link RuntimeException} 
- * from Spring framework to provide context about data-related failures.
- * 
+ * The {@code UtilsException} class represents runtime exceptions raised by the
+ * {@link Utils} utility methods. It extends {@link RuntimeException} to signal
+ * failures (e.g. invalid arguments or property-loading errors) without forcing
+ * checked-exception handling.
+ *
  * <p>This exception can be used to wrap other exceptions, providing a higher-level explanation
- * of what went wrong during data operations.</p>
+ * of what went wrong during a utility operation.</p>
  *
  * @author Hani son
- * @version 1.0.2
+ * @version 2.0.1
  */
 public class UtilsException extends RuntimeException {
     /**
-     * Constructs a new {@code DataException} with the specified detail message.
+     * Constructs a new {@code UtilsException} with the specified detail message.
      * 
      * @param message the detail message
      */
@@ -21,7 +22,7 @@ public class UtilsException extends RuntimeException {
     }
 
     /**
-     * Constructs a new {@code DataException} with the specified detail message and cause.
+     * Constructs a new {@code UtilsException} with the specified detail message and cause.
      * 
      * @param message the detail message
      * @param cause the cause of the exception (a {@code null} value is permitted, and indicates that the cause is nonexistent or unknown)
@@ -31,7 +32,7 @@ public class UtilsException extends RuntimeException {
     }
 
     /**
-     * Constructs a new {@code DataException} with the specified cause and a detail message of {@code (cause==null ? null : cause.toString())}.
+     * Constructs a new {@code UtilsException} with the specified cause and a detail message of {@code (cause==null ? null : cause.toString())}.
      * 
      * @param cause the cause of the exception (a {@code null} value is permitted, and indicates that the cause is nonexistent or unknown)
      */
@@ -40,7 +41,7 @@ public class UtilsException extends RuntimeException {
     }
 
     /**
-     * Constructs a new {@code DataException} using another {@code DataException} as its cause.
+     * Constructs a new {@code UtilsException} using another {@code UtilsException} as its cause.
      * 
      * @param cause the cause of the exception
      */

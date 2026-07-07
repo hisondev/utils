@@ -3,52 +3,61 @@
         {
             "name": "hison.utils.format.date",
             "type": "java.lang.String",
-            "description": "A description for 'hison.utils.format.date'"
+            "description": "Default date pattern used by date utilities (e.g. yyyy-MM-dd)."
         },
         {
             "name": "hison.utils.format.datetime",
             "type": "java.lang.String",
-            "description": "A description for 'hison.utils.format.datetime'"
+            "description": "Default datetime pattern used by datetime utilities (e.g. yyyy-MM-dd HH:mm:ss)."
         },
         {
             "name": "hison.utils.type.date-add",
             "type": "java.lang.String",
-            "description": "A description for 'hison.utils.type.date-add'"
+            "description": "Default unit for addDate() when no addType is given (y, M, d, h, m, s)."
         },
         {
             "name": "hison.utils.type.date-diff",
             "type": "java.lang.String",
-            "description": "A description for 'hison.utils.type.date-diff'"
+            "description": "Default unit for getDateDiff() when no diffType is given (y, M, d, h, m, s)."
         },
         {
             "name": "hison.utils.type.dayofweek",
             "type": "java.lang.String",
-            "description": "A description for 'hison.utils.type.dayofweek'"
+            "description": "Default output format for getDayOfWeek() (e.g. numeric index or day name)."
         },
         {
             "name": "hison.utils.charbyte.less2047",
             "type": "java.lang.String",
-            "description": "A description for 'hison.utils.charbyte.less2047'"
+            "description": "Byte length counted for a character whose code point is <= 0x7FF (default 2). Must be an integer."
         },
         {
             "name": "hison.utils.charbyte.less65535",
             "type": "java.lang.String",
-            "description": "A description for 'hison.utils.charbyte.less65535'"
+            "description": "Byte length counted for a character whose code point is <= 0xFFFF (default 3). Must be an integer."
         },
         {
             "name": "hison.utils.charbyte.greater65535",
             "type": "java.lang.String",
-            "description": "A description for 'hison.utils.charbyte.greater65535'"
+            "description": "Byte length counted for a character whose code point is > 0xFFFF (default 4). Must be an integer."
         },
         {
             "name": "hison.utils.format.number",
             "type": "java.lang.String",
-            "description": "A description for 'hison.utils.format.number'"
+            "description": "Default number format pattern used by getNumberFormat() (e.g. #,##0.#####)."
+        },
+        {
+            "name": "hison.utils.property.file.path",
+            "type": "java.lang.String",
+            "description": "Base classpath prefix used to locate property files loaded by getProperties()/getPropertyValue()."
         },
         {
             "name": "hison.utils.propertie.file.path",
             "type": "java.lang.String",
-            "description": "A description for 'hison.utils.propertie.file.path'"
+            "description": "Deprecated (misspelled) alias of 'hison.utils.property.file.path'. Kept for backward compatibility; prefer the corrected key.",
+            "deprecation": {
+                "replacement": "hison.utils.property.file.path",
+                "reason": "Key name was misspelled ('propertie'). Use 'hison.utils.property.file.path'."
+            }
         }
     ]
 }

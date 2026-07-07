@@ -15,7 +15,7 @@ This library, composed of JavaScript, can use `hison.min.js` from [hison-js](htt
 
 ### Prerequisites
 Before you can use the `utils` library, you need to have the following software installed on your system:
-- Java Development Kit (JDK) 8 or higher
+- Java Development Kit (JDK) 21 or higher
 - Apache Maven (for building the project)
 
 ### Installation
@@ -23,9 +23,9 @@ You can add the `utils` library to your project by including the following depen
 
 ```xml
 <dependency>
-    <groupId>io.github.hison</groupId>
+    <groupId>io.github.hisondev</groupId>
     <artifactId>utils</artifactId>
-    <version>1.0.2</version>
+    <version>2.0.1</version>
 </dependency>
 ```
 
@@ -34,10 +34,10 @@ You can add the `utils` library to your project by including the following depen
 The `utils` library allows you to configure certain properties using a properties file. Here is an example of how to set up the properties:
 
 1. **Create the properties file**:
-Create a file named `hison-utils-config.properties` in your project's resources directory.
+Add the settings to your project's `application.properties` (on the classpath). The library loads configuration from `application.properties`.
 
 2. **Add properties to the file**:
-Define the properties you want to customize in the `hison-utils-config.properties` file. Here are some example properties you can set:
+Define the properties you want to customize in `application.properties`. Here are some example properties you can set:
 
 ```properties
 # application.properties
@@ -50,8 +50,9 @@ hison.utils.charbyte.less2047=2
 hison.utils.charbyte.less65535=3
 hison.utils.charbyte.greater65535=4
 hison.utils.format.number=#,##0.##### 
-hison.utils.propertie.file.path=./config/
+hison.utils.property.file.path=./config/
 ```
+> Note: the key was previously misspelled as `hison.utils.propertie.file.path`. The old key still works (deprecated) but `hison.utils.property.file.path` is preferred.
 
 ### Ex) String Utilities
 ```java
@@ -91,6 +92,18 @@ double roundedNumber = Utils.getRound(123.456);
 // Get the byte length of a string
 int byteLength = Utils.getByteLength("Hello World");
 ```
+
+## Changelog
+
+### 2.0.1
+- **Fix**: `getByteLength` / `getCutByteLength` now count supplementary-plane characters (emoji, etc.) correctly. Previously a single 4-byte character was double-counted (surrogate pair).
+- **Fix**: `isIncludeSymbols` now returns `true` when the string *contains* a special character (uses `find()`), matching its documentation. Previously it only returned `true` for a string that was exactly one special character.
+- **Fix**: regex-based validators (`isValidEmail`, `isValidURL`, …) are null-safe (return `false` for `null` instead of throwing).
+- **Improvement**: all regular expressions are now pre-compiled once (`static final Pattern`) instead of being recompiled on every call.
+- **Improvement**: invalid `hison.utils.charbyte.*` config values no longer crash class loading; they fall back to defaults with a warning.
+- **Security**: added `getClientIpAddress(request, boolean trustProxy)`. Pass `trustProxy = false` on directly exposed servers to ignore spoofable forwarded headers. The existing single-argument method is documented with a spoofing warning.
+- **Config**: added corrected key `hison.utils.property.file.path`; the misspelled `hison.utils.propertie.file.path` remains as a deprecated alias.
+- **Docs**: corrected README (groupId, version, JDK 21, `application.properties`), `UtilsException` Javadoc, and configuration metadata descriptions.
 
 ## Contributing
 Contributions are welcome! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request on GitHub. Make sure to follow the project's code style and add tests for any new features or changes.

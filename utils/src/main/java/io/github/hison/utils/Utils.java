@@ -77,6 +77,41 @@ public final class Utils {
     private static String NUMBER_FORMATTER = "#,##0.#####";
     private static String PROPERTIE_FILE_PATH = "";
 
+    // ── 정규식은 불변이므로 클래스 로딩 시 1회만 컴파일한다 (매 호출 재컴파일 방지) ──
+    private static final Pattern P_LOWER_ALPHA     = Pattern.compile("[a-z]+");
+    private static final Pattern P_LOWER_ALPHANUM  = Pattern.compile("[a-z0-9]+");
+    private static final Pattern P_UPPER_ALPHA     = Pattern.compile("[A-Z]+");
+    private static final Pattern P_UPPER_ALPHANUM  = Pattern.compile("[A-Z0-9]+");
+    private static final Pattern P_NUMERIC         = Pattern.compile("-?\\d+(\\.\\d+)?");
+    private static final Pattern P_NUMBER_SYMBOLS  = Pattern.compile("^[0-9!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?~]+$");
+    private static final Pattern P_INCLUDE_SYMBOLS = Pattern.compile("[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?~]");
+    private static final Pattern P_EMAIL           = Pattern.compile("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$");
+    private static final Pattern P_URL             = Pattern.compile("^https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)");
+    private static final Pattern P_IPV4            = Pattern.compile("^((25[0-5]|2[0-4]\\d|[01]?\\d\\d?)\\.){3}(25[0-5]|2[0-4]\\d|[01]?\\d\\d?)$");
+    private static final Pattern P_IPV6            = Pattern.compile(
+            "^(" +
+            "([0-9a-fA-F]{1,4}:){7}([0-9a-fA-F]{1,4}|:)|" +
+            "([0-9a-fA-F]{1,4}:){1,7}:|" +
+            "([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|" +
+            "([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|" +
+            "([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|" +
+            "([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|" +
+            "([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|" +
+            "([0-9a-fA-F]{1,4}:){1}(:[0-9a-fA-F]{1,4}){1,6}|" +
+            ":((:[0-9a-fA-F]{1,4}){1,7}|:)|" +
+            "fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|" +
+            "::(ffff(:0{1,4}){0,1}:){0,1}" +
+            "((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\." +
+            "(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\." +
+            "(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\." +
+            "(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|" +
+            "([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\." +
+            "(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\." +
+            "(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\." +
+            "(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])" +
+            ")%[0-9a-zA-Z]{1,}$");
+    private static final Pattern P_NUMBER_FORMAT   = Pattern.compile("^(.*?)([#0,.]+)(.*?)$");
+
     static {
         Properties prop = new Properties();
         try (InputStream input = Utils.class.getClassLoader().getResourceAsStream("application.properties")) {
@@ -88,17 +123,34 @@ public final class Utils {
         } catch (IOException ex) {
             System.err.println("Failed to load application.properties: " + ex.getMessage());
         }
-    
+
         DATE_FORMATTER = prop.getProperty("hison.utils.format.date", DATE_FORMATTER);
         DATETIME_FORMATTER = prop.getProperty("hison.utils.format.datetime", DATETIME_FORMATTER);
         ADD_TYPE = prop.getProperty("hison.utils.type.date-add", ADD_TYPE);
         DIFF_TYPE = prop.getProperty("hison.utils.type.date-diff", DIFF_TYPE);
         DAY_OF_WEEK_TYPE = prop.getProperty("hison.utils.type.dayofweek", DAY_OF_WEEK_TYPE);
-        LESSOREQ_0X7FF_BYTE = Integer.parseInt(prop.getProperty("hison.utils.charbyte.less2047", String.valueOf(LESSOREQ_0X7FF_BYTE)));
-        LESSOREQ_0XFFFF_BYTE = Integer.parseInt(prop.getProperty("hison.utils.charbyte.less65535", String.valueOf(LESSOREQ_0XFFFF_BYTE)));
-        GREATER_0XFFFF_BYTE = Integer.parseInt(prop.getProperty("hison.utils.charbyte.greater65535", String.valueOf(GREATER_0XFFFF_BYTE)));
+        // 설정값이 숫자가 아니어도 앱이 죽지 않도록 방어 파싱 (기존엔 parseInt 실패 시 클래스 로딩 자체가 실패)
+        LESSOREQ_0X7FF_BYTE  = parseIntOrDefault(prop.getProperty("hison.utils.charbyte.less2047"), LESSOREQ_0X7FF_BYTE);
+        LESSOREQ_0XFFFF_BYTE = parseIntOrDefault(prop.getProperty("hison.utils.charbyte.less65535"), LESSOREQ_0XFFFF_BYTE);
+        GREATER_0XFFFF_BYTE  = parseIntOrDefault(prop.getProperty("hison.utils.charbyte.greater65535"), GREATER_0XFFFF_BYTE);
         NUMBER_FORMATTER = prop.getProperty("hison.utils.format.number", NUMBER_FORMATTER);
-        PROPERTIE_FILE_PATH = prop.getProperty("hison.utils.propertie.file.path", PROPERTIE_FILE_PATH);
+        // 설정 키: 신규 'property'(정식) 우선, 없으면 구 'propertie'(오타 — deprecated, 하위호환) 폴백
+        PROPERTIE_FILE_PATH = prop.getProperty("hison.utils.property.file.path",
+                              prop.getProperty("hison.utils.propertie.file.path", PROPERTIE_FILE_PATH));
+    }
+
+    /**
+     * 설정값을 int로 파싱하되, 형식 오류 시 기본값을 반환한다.
+     * (잘못된 설정값 하나가 클래스 로딩을 실패시켜 앱 전체를 중단시키는 것을 방지)
+     */
+    private static int parseIntOrDefault(String value, int defaultValue) {
+        if (value == null) return defaultValue;
+        try {
+            return Integer.parseInt(value.trim());
+        } catch (NumberFormatException e) {
+            System.err.println("Invalid int config value: '" + value + "' (fallback to " + defaultValue + ")");
+            return defaultValue;
+        }
     }
 
     /**********************************************************************
@@ -208,9 +260,7 @@ public final class Utils {
         if (s == null || s.isEmpty()) {
             return false;
         }
-        Pattern pattern = Pattern.compile("^[0-9!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?~]+$");
-        Matcher matcher = pattern.matcher(s);
-        return matcher.matches();
+        return P_NUMBER_SYMBOLS.matcher(s).matches();
     }
 
     /**
@@ -233,9 +283,9 @@ public final class Utils {
         if (s == null || s.isEmpty()) {
             return false;
         }
-        Pattern pattern = Pattern.compile("[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?~]");
-        Matcher matcher = pattern.matcher(s);
-        return matcher.matches();
+        // 문서 정의는 "특수문자를 하나라도 포함하면 true" → find() 사용
+        // (기존 matches()는 문자열 전체가 특수문자 1개일 때만 true였던 버그)
+        return P_INCLUDE_SYMBOLS.matcher(s).find();
     }
 
     /**
@@ -260,7 +310,7 @@ public final class Utils {
         if (s == null || s.isEmpty()) {
             return false;
         }
-        return s.matches("[a-z]+");
+        return P_LOWER_ALPHA.matcher(s).matches();
     }
 
     /**
@@ -286,7 +336,7 @@ public final class Utils {
         if (s == null || s.isEmpty()) {
             return false;
         }
-        return s.matches("[a-z0-9]+");
+        return P_LOWER_ALPHANUM.matcher(s).matches();
     }
     
     /**
@@ -311,7 +361,7 @@ public final class Utils {
         if (s == null || s.isEmpty()) {
             return false;
         }
-        return s.matches("[A-Z]+");
+        return P_UPPER_ALPHA.matcher(s).matches();
     }
 
     /**
@@ -337,7 +387,7 @@ public final class Utils {
         if (s == null || s.isEmpty()) {
             return false;
         }
-        return s.matches("[A-Z0-9]+");
+        return P_UPPER_ALPHANUM.matcher(s).matches();
     }
 
     /**
@@ -361,7 +411,7 @@ public final class Utils {
         if (s == null || s.isEmpty()) {
             return false;
         }
-        return s.matches("-?\\d+(\\.\\d+)?");
+        return P_NUMERIC.matcher(s).matches();
     }
 
     /**
@@ -745,8 +795,7 @@ public final class Utils {
      *         {@code false} otherwise
      */
     public static boolean isValidEmail(String email) {
-        String emailPattern = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-        return Pattern.matches(emailPattern, email);
+        return email != null && P_EMAIL.matcher(email).matches();
     }
 
     /**
@@ -774,8 +823,7 @@ public final class Utils {
      *         {@code false} otherwise
      */
     public static boolean isValidURL(String url) {
-        String urlPattern = "^https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)";
-        return Pattern.matches(urlPattern, url);
+        return url != null && P_URL.matcher(url).matches();
     }
 
     /**
@@ -802,9 +850,7 @@ public final class Utils {
      *         {@code false} otherwise
      */
     public static boolean isValidIPv4(String ip) {
-        String ipPattern = "^((25[0-5]|2[0-4]\\d|[01]?\\d\\d?)\\.){3}(25[0-5]|2[0-4]\\d|[01]?\\d\\d?)$";
-        
-        return ip != null && ip.matches(ipPattern);
+        return ip != null && P_IPV4.matcher(ip).matches();
     }
 
     /**
@@ -840,29 +886,7 @@ public final class Utils {
      *         {@code false} otherwise
      */
     public static boolean isValidIPv6(String ip) {
-        String ipv6Pattern = "^(" +
-                "([0-9a-fA-F]{1,4}:){7}([0-9a-fA-F]{1,4}|:)|" +
-                "([0-9a-fA-F]{1,4}:){1,7}:|" +
-                "([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|" +
-                "([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|" +
-                "([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|" +
-                "([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|" +
-                "([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|" +
-                "([0-9a-fA-F]{1,4}:){1}(:[0-9a-fA-F]{1,4}){1,6}|" +
-                ":((:[0-9a-fA-F]{1,4}){1,7}|:)|" +
-                "fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|" +
-                "::(ffff(:0{1,4}){0,1}:){0,1}" +
-                "((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\." +
-                "(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\." +
-                "(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\." +
-                "(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|" +
-                "([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\." +
-                "(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\." +
-                "(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\." +
-                "(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])" +
-                ")%[0-9a-zA-Z]{1,}$";
-        
-        return ip != null && ip.matches(ipv6Pattern);
+        return ip != null && P_IPV6.matcher(ip).matches();
     }
 
     /**
@@ -2312,7 +2336,7 @@ public final class Utils {
         if (str == null) return 0;
 
         int byteLength = 0;
-        for (int i = 0; i < str.length(); i++) {
+        for (int i = 0; i < str.length(); ) {
             int charCode = str.codePointAt(i);
 
             if (charCode <= 0x7F) {
@@ -2324,6 +2348,9 @@ public final class Utils {
             } else {
                 byteLength += GREATER_0XFFFF_BYTE;
             }
+            // 보조평면 문자(이모지 등)는 char 2개(서로게이트 페어)이므로 2칸 전진 → 1회만 계산
+            // (기존 i++ 는 low surrogate에서 codePointAt을 또 더해 1글자를 이중 계산하는 버그였음)
+            i += Character.charCount(charCode);
         }
         return byteLength;
     }
@@ -2355,7 +2382,7 @@ public final class Utils {
         int byteLength = 0;
         int cutIndex = str.length();
 
-        for (int i = 0; i < str.length(); i++) {
+        for (int i = 0; i < str.length(); ) {
             int charCode = str.codePointAt(i);
 
             if (charCode <= 0x7F) {
@@ -2372,6 +2399,8 @@ public final class Utils {
                 cutIndex = i;
                 break;
             }
+            // 보조평면 문자는 2칸 전진 → 잘림 위치도 서로게이트 페어 중간이 되지 않게 보장
+            i += Character.charCount(charCode);
         }
         return str.substring(0, cutIndex);
     }
@@ -2674,9 +2703,8 @@ public final class Utils {
      * @throws IllegalArgumentException If the format pattern is invalid or mixes '#' and '0' in the decimal format.
      */
     public static String getNumberFormat(String value, String format) {
-        Pattern pattern = Pattern.compile("^(.*?)([#0,.]+)(.*?)$");
         if(format == null || "".equals(format)) format = NUMBER_FORMATTER;
-        Matcher matcher = pattern.matcher(format);
+        Matcher matcher = P_NUMBER_FORMAT.matcher(format);
     
         if (!matcher.find()) {
             throw new IllegalArgumentException("Invalid format");
@@ -2828,11 +2856,41 @@ public final class Utils {
      * Note: In cases where the "X-Forwarded-For" header contains multiple IP addresses, separated by commas, this method returns the first
      * IP address in the list, which is typically the original client's IP address.
      * </p>
+     * <p>
+     * <b>⚠️ SECURITY WARNING:</b> proxy headers such as {@code X-Forwarded-For} are supplied by the client and can be
+     * <b>spoofed</b>. Only trust them when the application sits behind a proxy/load balancer you control. If this method
+     * is called on a directly exposed server, an attacker can forge the returned IP to bypass IP-based rate limiting,
+     * logging, or access control. When you are NOT behind a trusted proxy, use {@link #getClientIpAddress(HttpServletRequest, boolean)}
+     * with {@code trustProxy = false} to rely solely on {@code getRemoteAddr()}.
+     * </p>
      *
      * @param request The HttpServletRequest from which to extract the client's IP address.
      * @return The client's IP address as a string. If no IP address is found in the headers, returns the IP address from getRemoteAddr().
      */
     public static String getClientIpAddress(HttpServletRequest request) {
+        return getClientIpAddress(request, true);
+    }
+
+    /**
+     * <p>Returns the client's IP address, optionally trusting proxy headers.</p>
+     * <p>
+     * When {@code trustProxy} is {@code true}, this behaves like {@link #getClientIpAddress(HttpServletRequest)}:
+     * it inspects forwarded headers (X-Forwarded-For, etc.) first. Use this ONLY behind a proxy/load balancer you control.
+     * </p>
+     * <p>
+     * When {@code trustProxy} is {@code false}, forwarded headers are ignored and only the direct connection IP
+     * ({@code request.getRemoteAddr()}) is returned. This is spoofing-safe and recommended for directly exposed servers.
+     * </p>
+     *
+     * @param request    The HttpServletRequest from which to extract the client's IP address.
+     * @param trustProxy Whether forwarded proxy headers may be trusted.
+     * @return The client's IP address as a string.
+     */
+    public static String getClientIpAddress(HttpServletRequest request, boolean trustProxy) {
+        if (!trustProxy) {
+            return request.getRemoteAddr();
+        }
+
         String[] headers = {
             "X-Forwarded-For",
             "Proxy-Client-IP",
