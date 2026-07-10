@@ -95,6 +95,9 @@ int byteLength = Utils.getByteLength("Hello World");
 
 ## Changelog
 
+### 2.0.2
+- **Fix**: `isValidIPv6` regex had an unclosed group (broken since its introduction). After the 2.0.1 pattern-precompile change this crashed `Utils` class initialization (`ExceptionInInitializerError`) on any first use. The IPv4-mapped alternative is restored to the standard form and the stray zone-id tail removed.
+
 ### 2.0.1
 - **Fix**: `getByteLength` / `getCutByteLength` now count supplementary-plane characters (emoji, etc.) correctly. Previously a single 4-byte character was double-counted (surrogate pair).
 - **Fix**: `isIncludeSymbols` now returns `true` when the string *contains* a special character (uses `find()`), matching its documentation. Previously it only returned `true` for a string that was exactly one special character.
