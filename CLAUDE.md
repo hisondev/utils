@@ -15,7 +15,7 @@ jv/utils/               ← git 저장소 루트 (README, LICENSE)
 
 ## 핵심 사실
 
-- **Maven**: groupId `io.github.hisondev`, artifactId `utils`, **v2.0.1**(2026-07-06 보완, 배포 대기) / **Java 21** / jakarta.servlet-api 6.0.0(provided, getClientIpAddress에서만 사용) / MIT
+- **Maven**: groupId `io.github.hisondev`, artifactId `utils`, **v2.0.2**(2026-07-10 IPv6 정규식 hotfix — md 6-1절, Central 배포 완료) / **Java 21** / jakarta.servlet-api 6.0.0(provided, getClientIpAddress에서만 사용) / MIT
 - **패키지는 `io.github.hison.utils`** (groupId와 다름 — 혼동 주의)
 - `Utils`는 final 클래스 + private 생성자. 모든 메서드가 `Utils.xxx()` 정적 호출
 - **설정은 classpath의 `application.properties`에서 로드** (static 블록). 키: `hison.utils.format.date`, `hison.utils.format.datetime`, `hison.utils.type.date-add/date-diff/dayofweek`, `hison.utils.charbyte.less2047/less65535/greater65535`, `hison.utils.format.number`, `hison.utils.propertie.file.path`
